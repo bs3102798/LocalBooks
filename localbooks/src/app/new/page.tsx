@@ -11,6 +11,7 @@ export default function NewBookPage() {
                     </h2>
                     <div className="flex flex-col">
                         <FontAwesomeIcon icon={faImage} className="h-24 text-gray-400" />
+                        
                         <button className="mt-2 border border-[#3F2E56] text-[#3F2E56] px-4 py-2 rounded uppercase font-bold">
                             <FontAwesomeIcon icon={faPlus} />
                             Add photos
