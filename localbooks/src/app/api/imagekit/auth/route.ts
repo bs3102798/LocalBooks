@@ -8,9 +8,9 @@ export const GET = async() => {
         return Response.json(false)
     }
     const ik = new ImageKit({
-        urlEndpoint: process.env.NEXT_PUBLIC_IK_ENDPOINT,
-        publicKey: process.env.NEXT_PUBLIK_IK_PUBLIC_KEY,
-        privateKey: process.env.IK_PRIVATE_KEY,
+        urlEndpoint: process.env.NEXT_PUBLIC_IK_ENDPOINT as string,
+        publicKey: process.env.NEXT_PUBLIK_IK_PUBLIC_KEY as string,
+        privateKey: process.env.IK_PRIVATE_KEY as string,
 
     })
 }
