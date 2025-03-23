@@ -1,7 +1,10 @@
+import Uploader from "@/components/Uploader";
 import { faImage, faMapPin, faPlus } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useState } from "react";
 
 export default function NewBookPage() {
+    const [files, setFiles] = useState([])
     return (
         <form action='' className="max-w-xl mx-auto flex gap-12">
             <div className="grow pt-8">
@@ -11,6 +14,7 @@ export default function NewBookPage() {
                     </h2>
                     <div className="flex flex-col">
                         <FontAwesomeIcon icon={faImage} className="h-24 text-gray-400" />
+                        <Uploader onSuccess={}/>
                         
                         <button className="mt-2 border border-[#3F2E56] text-[#3F2E56] px-4 py-2 rounded uppercase font-bold">
                             <FontAwesomeIcon icon={faPlus} />
