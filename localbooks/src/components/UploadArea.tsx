@@ -25,7 +25,7 @@ export default function UploadArea({ files, setFiles }: Props) {
                     onClick={() => console.log}
                     className={
                         ' upload-btn cursor-pointer mt-2 border px-4 py-2 rounded uppercase font-bold items-center justify-content '
-                         + (
+                        + (
                             isUploading
                                 ? ' text-gray-400 cursor-not-allowed'
                                 : " border-[#3F2E56] text-[#3F2E56]"
@@ -48,10 +48,16 @@ export default function UploadArea({ files, setFiles }: Props) {
                         </>
                     )}
                 </label>
-                {files.map((file) => (
-                    // <div className="text-xs" key={file.url || index}>{file.url}</div>
-                    <UploadThumbnail file={file} key={file.url} />
-                ))}
+                <div className="flex flex-wrap mt-2 gap-2">
+
+                    {files.map((file) => (
+                        // <div className="text-xs" key={file.url || index}>{file.url}</div>
+                        <div className="size-14 rounded overflow-hidden" key={file.url}>
+                            <UploadThumbnail file={file} key={file.url} />
+
+                        </div>
+                    ))}
+                </div>
             </div>
         </div>
     )
