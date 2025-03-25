@@ -1,27 +1,19 @@
-import Uploader from "@/components/Uploader";
-import { faImage, faMapPin, faPlus } from "@fortawesome/free-solid-svg-icons";
+
+'use client'
+import UploadArea from "@/components/UploadArea";
+
+import {  faMapPin } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { UploadResponse } from "imagekit/dist/libs/interfaces";
 import { useState } from "react";
 
 export default function NewBookPage() {
-    const [files, setFiles] = useState([])
+    const [files, setFiles] = useState<UploadResponse[]>([]);
     return (
-        <form action='' className="max-w-xl mx-auto flex gap-12">
+        <form action='' className="max-w-xl mx-auto grid  grid-cols-2 gap-12">
             <div className="grow pt-8">
-                <div className="bg-gray-200 p-4 rounded">
-                    <h2 className="text-center text-xs text-gray-400 uppercase font-bold">
-                        Add photos of book:
-                    </h2>
-                    <div className="flex flex-col">
-                        <FontAwesomeIcon icon={faImage} className="h-24 text-gray-400" />
-                        <Uploader onSuccess={}/>
-                        
-                        <button className="mt-2 border border-[#3F2E56] text-[#3F2E56] px-4 py-2 rounded uppercase font-bold">
-                            <FontAwesomeIcon icon={faPlus} />
-                            Add photos
-                        </button>
-                    </div>
-                </div>
+                <UploadArea files={files} setFiles={setFiles}/>
+                
                 <div className="mt-6">
                     <label htmlFor="">Where is it located</label>
                     <button className="w-full flex items-center gap-2 py-1 justify-center border border-[#3F2E56] text-[#3F2E56] uppercase font-bold rounded">

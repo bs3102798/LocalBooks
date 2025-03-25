@@ -10,3 +10,10 @@ form label{
   @apply text-xs text-gray-600 font-bold block uppercase mt-4 mb-1
 }
 
+label.upload-btn input[type="file"] {
+  @apply hidden
+ 
+  
+
+}
+
