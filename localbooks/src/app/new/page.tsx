@@ -2,7 +2,7 @@
 'use client'
 import AdTextInputs from "@/components/AdTextsInputs";
 import UploadArea from "@/components/UploadArea";
-import MapPicker from 'react-google-map-picker';
+//import MapPicker from 'react-google-map-picker';
 import { faMapPin } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { UploadResponse } from "imagekit/dist/libs/interfaces";
@@ -10,7 +10,7 @@ import { useEffect, useState } from "react";
 
 export default function NewBookPage() {
     const [files, setFiles] = useState<UploadResponse[]>([]);
-    const [showMap, setShowMap] = useState(false)
+    //const [showMap, setShowMap] = useState(false)
     useEffect(() => {
         setShowMap(true)
     })
@@ -28,13 +28,7 @@ export default function NewBookPage() {
                         </span>
                     </button>
                     <div className="mt-2 bg-gray-200 p-4 min-h-12 rounded text-gray-400">
-                        {showMap && (
-
-                            <MapPicker
-                            apiKey={"AIzaSyBtqoNwoR6p2FspniHv3CdgC_Zqmng0JQs"}
-                            defaultLocation={{lat:10, lng:106} }
-                            />
-                        )}
+                      
                     </div>
                 </div>
             </div>
