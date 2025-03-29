@@ -6,14 +6,11 @@ import UploadArea from "@/components/UploadArea";
 import { faMapPin } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { UploadResponse } from "imagekit/dist/libs/interfaces";
-import { useEffect, useState } from "react";
+import {  useState } from "react";
 
 export default function NewBookPage() {
     const [files, setFiles] = useState<UploadResponse[]>([]);
-    //const [showMap, setShowMap] = useState(false)
-    useEffect(() => {
-        setShowMap(true)
-    })
+   
     return (
         <form action='' className="max-w-xl mx-auto grid  grid-cols-2 gap-12">
             <div className="grow pt-8">
@@ -28,6 +25,7 @@ export default function NewBookPage() {
                         </span>
                     </button>
                     <div className="mt-2 bg-gray-200 p-4 min-h-12 rounded text-gray-400">
+                        {/*map picker */}
                       
                     </div>
                 </div>
