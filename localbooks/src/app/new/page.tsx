@@ -1,6 +1,7 @@
 
 'use client'
 import AdTextInputs from "@/components/AdTextsInputs";
+import LocationPicker from "@/components/LocationPicker";
 import UploadArea from "@/components/UploadArea";
 //import MapPicker from 'react-google-map-picker';
 import { faMapPin } from "@fortawesome/free-solid-svg-icons";
@@ -25,7 +26,7 @@ export default function NewBookPage() {
                         </span>
                     </button>
                     <div className="mt-2 bg-gray-200 p-4 min-h-12 rounded text-gray-400">
-                        {/*map picker */}
+                        <LocationPicker />
                       
                     </div>
                 </div>
