@@ -1,7 +1,7 @@
 
 'use client'
 import AdTextInputs from "@/components/AdTextsInputs";
-import LocationPicker from "@/components/LocationPicker";
+import LocationPicker, { Location } from "@/components/LocationPicker";
 import UploadArea from "@/components/UploadArea";
 //import MapPicker from 'react-google-map-picker';
 import { faMapPin } from "@fortawesome/free-solid-svg-icons";
@@ -11,6 +11,7 @@ import {  useState } from "react";
 
 export default function NewBookPage() {
     const [files, setFiles] = useState<UploadResponse[]>([]);
+    const [location, setLocation] = useState<Location>()
    
     return (
         <form action='' className="max-w-xl mx-auto grid  grid-cols-2 gap-12">
@@ -26,7 +27,8 @@ export default function NewBookPage() {
                         </span>
                     </button>
                     <div className="mt-2 bg-gray-200 p-4 min-h-12 rounded text-gray-400">
-                        <LocationPicker />
+                        {JSON.stringify(location)}
+                        <LocationPicker onChange={location => setLocation(location)} />
                       
                     </div>
                 </div>
