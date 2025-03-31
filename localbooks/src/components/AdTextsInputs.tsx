@@ -6,8 +6,8 @@ export default function AdTextInputs() {
             <label htmlFor="priceIn">Price</label>
             <input id="priceIn" type='number' placeholder="Price" />
             <label htmlFor="categoryIn">Category</label>
-            <select defaultValue="">
-                <option disabled value="">Select a genre</option>
+            <select name="" id="categoryIn" defaultValue="0">
+                <option disabled value="0">Select a genre</option>
                 {/* place font awsome images later */}
                 <option value="">action</option>
                 <option value="">historic</option>
