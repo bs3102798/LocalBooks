@@ -1,19 +1,26 @@
 'use effect';
-import { Loader } from "@googlemaps/js-api-loader"
-import { createRef, useEffect } from "react"
+import { Loader, } from "@googlemaps/js-api-loader"
+import { createRef, Dispatch, SetStateAction, useEffect, useState } from "react"
+//import type  {Map} from '@types/google.maps'
+
 
 export type Location = {
     lat: number;
     lng: number;
 }
 
-type LocationChangeHandler = (pos: Location) => void
+//type LocationChangeHandler = (pos: Location) => void
 
 export default function LocationPicker({
-    onChange,
+    location,
+    setLocation,
 }: {
-    onChange: LocationChangeHandler
+    location: Location;
+   // onChange: LocationChangeHandler
+   setLocation: Dispatch<SetStateAction<Location>>
 }) {
+    const [map, setMap] = useState<any>();
+    const [pin, setPin] = useState<any>()
     const divRef = createRef<HTMLDivElement>()
 
 
@@ -28,26 +35,28 @@ export default function LocationPicker({
         //console.log(divRef.current)
         const map = new Map(divRef.current as HTMLDivElement, {
             mapId: 'map',
-            center: { lat: 0, lng: 0 },
-            zoom: 3,
+            center: location,
+            zoom: 6,
             mapTypeControl: false,
             streetViewControl: false,
         })
+        setMap(map);
         const pin = new AdvancedMarkerElement({
             map,
-            position: { lat: 0, lng: 0 }
+            position: location
         })
         //alert('test')
         // map.addListener('click', (ev: any) => {
         //     pin.position = ev.latLng;
 
         // })
-        map.addListener('click', (ev: google.maps.MapMouseEvent) => {
+        setPin(pin);
+        map.addListener('click', (ev: any) => {
             if (ev.latLng) {
                 pin.position = ev.latLng;
                 const lat = ev.latLng.lat();
                 const lng =ev.latLng.lng();
-                onChange({lat, lng})
+                setLocation({lat, lng})
             }
         });
 
@@ -58,6 +67,14 @@ export default function LocationPicker({
         loadMap()
 
     }, [])
+
+    useEffect(() => {
+        if(map && pin) {
+            // map.center = location
+            // pin.position = location
+            loadMap()
+        }
+    }, [location])
     return (
         <>
             <div ref={divRef} id="mapElem" className="w-full h-[200px]">

@@ -7,29 +7,53 @@ import UploadArea from "@/components/UploadArea";
 import { faMapPin } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { UploadResponse } from "imagekit/dist/libs/interfaces";
-import {  useState } from "react";
+import { useState } from "react";
+
+const locationDefault = {
+    lat: 34.0522 , 
+    lng: -118.2437 ,
+}
 
 export default function NewBookPage() {
     const [files, setFiles] = useState<UploadResponse[]>([]);
-    const [location, setLocation] = useState<Location>()
-   
+    const [location, setLocation] = useState<Location>(locationDefault)
+
+    function handleFindMyPostionClick() {
+        navigator.geolocation.getCurrentPosition( ev => {
+            //console.log("Location found:", ev.coords.latitude, ev.coords.longitude);
+            setLocation({lat: ev.coords.latitude, lng: ev.coords.longitude})
+        }, console.error);
+    }
+    //console.log(handleFindMyPostionClick)
+
     return (
         <form action='' className="max-w-xl mx-auto grid  grid-cols-2 gap-12">
             <div className="grow pt-8">
                 <UploadArea files={files} setFiles={setFiles} />
 
                 <div className="mt-6">
-                    <label htmlFor="">Where is it located</label>
-                    <button className="w-full flex items-center gap-2 py-1 justify-center border border-[#3F2E56] text-[#3F2E56] uppercase font-bold rounded">
-                        <FontAwesomeIcon icon={faMapPin} />
-                        <span>
-                            add location
-                        </span>
-                    </button>
-                    <div className="mt-2 bg-gray-200 p-4 min-h-12 rounded text-gray-400">
+                    <div className="flex justify-between items-center mb-1">
+
+                        <label htmlFor="" className="mt-0 mb-0">Add Location</label>
+                        <div>
+
+                            <button
+                            type="button"
+                            onClick={handleFindMyPostionClick}
+                             className="border flex p-1 items-center gap-2 py-1 justify-center text-[#3F2E56] uppercase font-bold rounded">
+                                <FontAwesomeIcon icon={faMapPin} />
+
+
+                            </button>
+                        </div>
+                    </div>
+                    <div className="mt-1 bg-gray-200 min-h-12 rounded overflow-hidden text-gray-400">
                         {JSON.stringify(location)}
-                        <LocationPicker onChange={location => setLocation(location)} />
-                      
+                        
+                        <LocationPicker
+                         location={location} 
+                         setLocation={setLocation} />
+
                     </div>
                 </div>
             </div>
