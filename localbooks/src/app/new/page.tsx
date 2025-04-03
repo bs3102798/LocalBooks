@@ -51,8 +51,8 @@ export default function NewBookPage() {
                         {JSON.stringify(location)}
                         
                         <LocationPicker
-                         location={location} 
-                         setLocation={setLocation} />
+                         defaultlocation={locationDefault} 
+                         onChange={location => setLocation(location)} />
 
                     </div>
                 </div>
