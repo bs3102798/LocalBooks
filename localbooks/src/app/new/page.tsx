@@ -17,11 +17,14 @@ const locationDefault = {
 export default function NewBookPage() {
     const [files, setFiles] = useState<UploadResponse[]>([]);
     const [location, setLocation] = useState<Location>(locationDefault)
+    const [gpsCoords, setGpsCoords] = useState<Location|null>(null);
 
     function handleFindMyPostionClick() {
         navigator.geolocation.getCurrentPosition( ev => {
             //console.log("Location found:", ev.coords.latitude, ev.coords.longitude);
-            setLocation({lat: ev.coords.latitude, lng: ev.coords.longitude})
+            const loation = {lat: ev.coords.latitude, lng: ev.coords.longitude}
+            setLocation(loation)
+            setGpsCoords(loation)
         }, console.error);
     }
     //console.log(handleFindMyPostionClick)
@@ -52,6 +55,7 @@ export default function NewBookPage() {
                         
                         <LocationPicker
                          defaultlocation={locationDefault} 
+                         gpsCoords={gpsCoords}
                          onChange={location => setLocation(location)} />
 
                     </div>

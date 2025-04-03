@@ -14,10 +14,12 @@ export type Location = {
 export default function LocationPicker({
     defaultlocation,
     onChange,
+    gpsCoords,
 }: {
     defaultlocation: Location;
    // onChange: LocationChangeHandler
-   onChange: (location: Location) => void
+   onChange: (location: Location) => void;
+   gpsCoords: Location|null
 }) {
     const [map, setMap] = useState<any>();
     const [pin, setPin] = useState<any>()
@@ -67,6 +69,10 @@ export default function LocationPicker({
         loadMap()
 
     }, [])
+    useEffect(() => {
+        loadMap()
+
+    }, [gpsCoords])
 
     // useEffect(() => {
     //     if(map && pin) {
