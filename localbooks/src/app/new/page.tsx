@@ -8,6 +8,7 @@ import { faMapPin } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { UploadResponse } from "imagekit/dist/libs/interfaces";
 import { useState } from "react";
+import { createAd } from "../actions/adActions";
 
 const locationDefault = {
     lat: 34.0522 , 
@@ -28,11 +29,12 @@ export default function NewBookPage() {
         }, console.error);
     }
     //console.log(handleFindMyPostionClick)
-    function handleSubmit(formData:FormData) {
+    async function handleSubmit(formData:FormData) {
        formData.set('location', JSON.stringify(location));
 
        formData.set('files', JSON.stringify(files));
-       console.log(Object.fromEntries(formData));       
+       await createAd(formData);
+       //console.log(Object.fromEntries(formData));       
 
     }
 
