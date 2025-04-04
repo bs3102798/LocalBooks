@@ -28,9 +28,16 @@ export default function NewBookPage() {
         }, console.error);
     }
     //console.log(handleFindMyPostionClick)
+    function handleSubmit(formData:FormData) {
+       formData.set('location', JSON.stringify(location));
+
+       formData.set('files', JSON.stringify(files));
+       console.log(Object.fromEntries(formData));       
+
+    }
 
     return (
-        <form action='' className="max-w-xl mx-auto grid  grid-cols-2 gap-12">
+        <form action={handleSubmit} className="max-w-xl mx-auto grid  grid-cols-2 gap-12">
             <div className="grow pt-8">
                 <UploadArea files={files} setFiles={setFiles} />
 
@@ -64,7 +71,6 @@ export default function NewBookPage() {
 
             <div className="grow pt-2">
                 <AdTextInputs />
-
                 <button className="mt-2 bg-[#3F2E56] text-white px-6 py-2 rounded font-bold">
                     POST BOOK
                 </button>

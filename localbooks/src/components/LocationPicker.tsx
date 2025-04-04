@@ -1,7 +1,8 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 'use effect';
 import { Loader, } from "@googlemaps/js-api-loader"
-import { createRef,  useEffect, useState } from "react"
-//import type  {Map} from '@types/google.maps'
+import { createRef,  useEffect } from "react"
+
 
 
 export type Location = {
@@ -9,7 +10,6 @@ export type Location = {
     lng: number;
 }
 
-//type LocationChangeHandler = (pos: Location) => void
 
 export default function LocationPicker({
     defaultlocation,
@@ -17,12 +17,11 @@ export default function LocationPicker({
     gpsCoords,
 }: {
     defaultlocation: Location;
-   // onChange: LocationChangeHandler
+
    onChange: (location: Location) => void;
    gpsCoords: Location|null
 }) {
-    const [map, setMap] = useState<any>();
-    const [pin, setPin] = useState<any>()
+    
     const divRef = createRef<HTMLDivElement>()
 
 
@@ -30,11 +29,10 @@ export default function LocationPicker({
         const loader = new Loader({
             apiKey: process.env.NEXT_PUBLIC_MAPS_KEY as string,
         })
-        //console.log(process.env.NEXT_PUBLIC_MAPS_KEY);
+
         const { Map } = await loader.importLibrary('maps');
         const { AdvancedMarkerElement } = await loader.importLibrary('marker')
-        //console.log({Map,AdvancedMarkerElement})
-        //console.log(divRef.current)
+
         const map = new Map(divRef.current as HTMLDivElement, {
             mapId: 'map',
             center: defaultlocation,
@@ -42,17 +40,13 @@ export default function LocationPicker({
             mapTypeControl: false,
             streetViewControl: false,
         })
-        setMap(map);
+        
         const pin = new AdvancedMarkerElement({
             map,
             position: defaultlocation
         })
-        //alert('test')
-        // map.addListener('click', (ev: any) => {
-        //     pin.position = ev.latLng;
 
-        // })
-        setPin(pin);
+       
         map.addListener('click', (ev: any) => {
             if (ev.latLng) {
                 pin.position = ev.latLng;
@@ -65,23 +59,10 @@ export default function LocationPicker({
 
     }
     useEffect(() => {
-
+ 
         loadMap()
-
-    }, [])
-    useEffect(() => {
-        loadMap()
-
     }, [gpsCoords])
-
-    // useEffect(() => {
-    //     if(map && pin) {
-    //         // map.center = location
-    //         // pin.position = location
-            
-    //         loadMap()
-    //     }
-    // }, [location])    
+   
     return (
         <>
             <div ref={divRef} id="mapElem" className="w-full h-[200px]">
