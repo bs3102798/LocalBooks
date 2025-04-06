@@ -28,14 +28,14 @@ export default function NewBookPage() {
             setGpsCoords(loation)
         }, console.error);
     }
-    //console.log(handleFindMyPostionClick)
+
     async function handleSubmit(formData:FormData) {
        formData.set('location', JSON.stringify(location));
 
        formData.set('files', JSON.stringify(files));
        const result= await createAd(formData);
        console.log({result})
-       //console.log(Object.fromEntries(formData));       
+      
 
     }
 

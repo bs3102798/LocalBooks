@@ -19,10 +19,8 @@ export async function createAd(formData: FormData) {
         userEmail: session?.user?.email,
         ...data
     }
-    return newAdData
-    //return await AdModel.create({})
+    const newAdDoc = await AdModel.create(newAdData)
+    return JSON.parse(JSON.stringify(newAdDoc))
 
-    //console.log({ files, location, data})
-    //return (true);
-    //return (AdDoc);
+  
 }
