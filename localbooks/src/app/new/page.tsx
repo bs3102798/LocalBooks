@@ -33,7 +33,8 @@ export default function NewBookPage() {
        formData.set('location', JSON.stringify(location));
 
        formData.set('files', JSON.stringify(files));
-       await createAd(formData);
+       const result= await createAd(formData);
+       console.log({result})
        //console.log(Object.fromEntries(formData));       
 
     }
