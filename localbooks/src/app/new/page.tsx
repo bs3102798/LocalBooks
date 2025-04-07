@@ -9,6 +9,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { UploadResponse } from "imagekit/dist/libs/interfaces";
 import { useState } from "react";
 import { createAd } from "../actions/adActions";
+import SubmitButton from "@/components/SubmitButton";
 
 const locationDefault = {
     lat: 34.0522 , 
@@ -19,6 +20,7 @@ export default function NewBookPage() {
     const [files, setFiles] = useState<UploadResponse[]>([]);
     const [location, setLocation] = useState<Location>(locationDefault)
     const [gpsCoords, setGpsCoords] = useState<Location|null>(null);
+   // const [isSaving, setIsSaving]= useState<boolean>(false);
 
     function handleFindMyPostionClick() {
         navigator.geolocation.getCurrentPosition( ev => {
@@ -30,10 +32,12 @@ export default function NewBookPage() {
     }
 
     async function handleSubmit(formData:FormData) {
+       // setIsSaving(true)
        formData.set('location', JSON.stringify(location));
 
        formData.set('files', JSON.stringify(files));
        const result= await createAd(formData);
+       //setIsSaving(false)
        console.log({result})
       
 
@@ -74,9 +78,12 @@ export default function NewBookPage() {
 
             <div className="grow pt-2">
                 <AdTextInputs />
-                <button className="mt-2 bg-[#3F2E56] text-white px-6 py-2 rounded font-bold">
+                <SubmitButton>Publish</SubmitButton>
+                {/* <button className="mt-2 bg-[#3F2E56] text-white px-6 py-2 rounded font-bold">
+                    {/* {isSaving ? 'saving...' : 'POST BOOK'} 
                     POST BOOK
-                </button>
+                   
+                </button> */}
             </div>
         </form>
     )
