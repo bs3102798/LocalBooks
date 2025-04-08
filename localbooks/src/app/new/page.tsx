@@ -10,6 +10,9 @@ import { UploadResponse } from "imagekit/dist/libs/interfaces";
 import { useState } from "react";
 import { createAd } from "../actions/adActions";
 import SubmitButton from "@/components/SubmitButton";
+import { redirect } from "next/navigation";
+//import { redirect } from "next/navigation";
+;
 
 const locationDefault = {
     lat: 34.0522 , 
@@ -37,8 +40,11 @@ export default function NewBookPage() {
 
        formData.set('files', JSON.stringify(files));
        const result= await createAd(formData);
+       
+       redirect('/ad/'+result._id)
+       
        //setIsSaving(false)
-       console.log({result})
+       //console.log({result})
       
 
     }
@@ -79,11 +85,7 @@ export default function NewBookPage() {
             <div className="grow pt-2">
                 <AdTextInputs />
                 <SubmitButton>Publish</SubmitButton>
-                {/* <button className="mt-2 bg-[#3F2E56] text-white px-6 py-2 rounded font-bold">
-                    {/* {isSaving ? 'saving...' : 'POST BOOK'} 
-                    POST BOOK
-                   
-                </button> */}
+                
             </div>
         </form>
     )
