@@ -10,7 +10,7 @@ import Link from "next/link";
 
 export default function Header({ session }: { session: Session | null }) {
     return (
-        <header className="border-b p-4 flex items-center justify-between">
+        <header className="border-b p-4 flex items-center justify-between h-14">
             <Link className="text-[#3F2E56] font-bold text-2xl inline-flex items-center gap-1 px-2" href="/">
                 <FontAwesomeIcon icon={faBook} className="h-6" />
                 <span>LocalBook</span>

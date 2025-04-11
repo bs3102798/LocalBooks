@@ -18,18 +18,18 @@ export default async function AdBookPage(args: Props) {
     }
 
     return (
-        <div className="flex">
-            <div className="grow bg-black">photos</div>
+        <div className="flex absolute inset-0 top-14">
+            <div className="grow bg-black text-white">
+                <div>big photo</div>
+                <div className="">thumbnail</div>
+                </div>
             <div className="w-2/5 p-8">
                 <h1 className="text-lg font-bold">
 
                     {adDoc.title}
                 </h1>
-                <div>
-
-                    <b>Category:</b>
-                    <span>{adDoc.category}</span>
-                </div>
+            <label>category</label>
+            <p>{adDoc.category}</p>
                 <label>description</label>
                 <p className="text-sm">{adDoc.description}</p>
                 <label>contact</label>
