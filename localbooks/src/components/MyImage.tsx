@@ -5,21 +5,31 @@ import Image, { ImageProps } from "next/image";
 type LoaderProps = {
     src: string;
     width: number;
+    height?: number
     quality?: number | undefined
+    aiCrop?: boolean
 }
 
-const imageKitLoader = ({ src, width, quality }: LoaderProps) => {
+const imageKitLoader = ({ src, width, quality, height, aiCrop }: LoaderProps) => {
     if (src[0] === '/') src = src.slice(1);
-    
+
     const params = [`w-${width}`];
     if (quality) {
         params.push(`q-${quality}`);
     }
+    if (aiCrop) {
+        params.push('fo-auto')
+    }
+    if (height && aiCrop) {
+        params.push(`h-${height}`)
+    }
+    console.log(params);
 
     const paramsString = params.join(",");
+    console.log({ paramsString,width,height,quality })
     let urlEndpoint = process.env.NEXT_PUBLIC_IK_ENDPOINT as string;
 
-    // Properly trim the trailing slash if present
+
     if (urlEndpoint.endsWith("/")) {
         urlEndpoint = urlEndpoint.slice(0, -1);
     }
@@ -27,10 +37,21 @@ const imageKitLoader = ({ src, width, quality }: LoaderProps) => {
     return `${urlEndpoint}/${src}?tr=${paramsString}`;
 };
 
-const  MyImage = (props:ImageProps) => {
+type MyImageProps = ImageProps & {
+    aiCrop?: boolean;
+    width: number
+    height?: number
+}
+
+const MyImage = (props: MyImageProps) => {
     return (
-        <Image 
-            loader={imageKitLoader}
+        <Image
+            loader={args => imageKitLoader({
+                ...args,
+                width: props.width,
+                height: props.height,
+                aiCrop: props.aiCrop
+            })}
             {...props}
         />
     );

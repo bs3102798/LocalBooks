@@ -11,7 +11,8 @@ import MyImage from "./MyImage";
             alt={'product photo'} 
             width={2048} 
             height={2048}
-            className="w-full h-auto"
+            
+            className="w-full h-auto max-h-full"
             />
         )
     }
