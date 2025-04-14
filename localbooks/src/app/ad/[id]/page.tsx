@@ -24,24 +24,7 @@ export default async function AdBookPage(args: Props) {
         <div className="flex absolute inset-0 top-16">
             <div className="grow bg-black text-white flex flex-col">
                 <Gallary files={adDoc.files} />
-                {/* <div className="grow flex items-center p-4">
-                    {adDoc.files?.length > 0 && (
-                        <div>
-                            <UploadView file={adDoc.files[0]} />
-                        </div>
-                    )}
-                </div>
-                <div className="p-4 flex gap-4 shrink-0">
-                    {adDoc.files.map((file, index) => (
-                        <div className="size-14" key={index}>
-                            <UploadThumbnail file={file} />
-
-                        </div>
-
-                    ))}
-
-                </div> */}
-                left
+                
             </div>
 
             <div className="w-2/5 p-8 grow shrink-0">

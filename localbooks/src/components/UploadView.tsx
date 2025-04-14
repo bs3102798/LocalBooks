@@ -12,7 +12,7 @@ import MyImage from "./MyImage";
             width={2048} 
             height={2048}
             
-            className="w-full h-auto max-h-full"
+            className="w-auto h-auto max-w-full max-h-full"
             />
         )
     }
