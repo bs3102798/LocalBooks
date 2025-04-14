@@ -9,6 +9,19 @@ import { faChevronLeft, faChevronRight } from "@fortawesome/free-solid-svg-icons
 
 export default function Gallary({ files }: { files: UploadResponse[] }) {
     const [activeFile, setActiveFile] = useState<UploadResponse | null>(files?.[0] || null)
+    function next() {
+        const activeFileIndex = files.findIndex(f => f.fileId === activeFile?.fileId)
+        const nextIndex = activeFileIndex === files.length - 1 ? 0 : activeFileIndex + 1;
+        const nextFile = files[nextIndex];
+        setActiveFile(nextFile)
+    }
+    function prev() {
+        const activeFileIndex = files.findIndex(f => f.fileId === activeFile?.fileId)
+        const prevIndex = activeFileIndex === 0 ? files.length - 1 : activeFileIndex - 1;
+        const prevFile = files[prevIndex];
+        setActiveFile(prevFile)
+
+    }
     return (
         <>
             <div className="grow flex items-center relative">
@@ -19,10 +32,14 @@ export default function Gallary({ files }: { files: UploadResponse[] }) {
                         </div>
                         <div className="absolute inset-4 flex items-center">
                             <div className="flex justify-between w-full">
-                                <button className="size-12 justify-center rounded-full flex items-center bg-gray-500/40 hover:bg-gray-500/80">
+                                <button 
+                                onClick={prev}
+                                className="size-12 justify-center rounded-full flex items-center transition bg-gray-500/40 hover:bg-gray-500/80">
                                     <FontAwesomeIcon icon={faChevronLeft} />
                                 </button>
-                                <button className="size-12 justify-center rounded-full flex items-center bg-gray-500/40 hover:bg-gray-500/80">
+                                <button 
+                                onClick={next}
+                                className="size-12 justify-center rounded-full flex items-center transition bg-gray-500/40 hover:bg-gray-500/80">
                                     <FontAwesomeIcon icon={faChevronRight} />
                                 </button>
                             </div>
