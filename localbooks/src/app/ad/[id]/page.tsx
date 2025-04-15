@@ -22,7 +22,7 @@ export default async function AdBookPage(args: Props) {
 
     return (
         <div className="flex absolute inset-0 top-16">
-            <div className="w-3/5 grow bg-black text-white flex flex-col">
+            <div className="w-3/5 grow bg-black text-white flex flex-col relative">
                 <Gallary files={adDoc.files} />
                 
             </div>

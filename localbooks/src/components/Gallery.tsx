@@ -25,19 +25,23 @@ export default function Gallary({ files }: { files: UploadResponse[] }) {
     }
     return (
         <>
+        {activeFile && (
+              <div className="absolute inset-0 overflow-hidden">
+
+              <MyImage
+                  src={activeFile.filePath}
+                  alt={'bg'}
+                  width={3048}
+                  height={3048}
+                  className="object-cover  blur w-full h-full"
+              />
+          </div>
+        )}
             <div className="grow flex items-center relative">
+
                 {activeFile && (
                     <>
-                        <div className="absolute inset-0 overflow-hidden">
-
-                            <MyImage
-                                src={activeFile.filePath}
-                                alt={'bg'}
-                                width={3048}
-                                height={3048}
-                                className="object-cover opacity-20"
-                            />
-                        </div>
+                      
                         <div className="absolute inset-4 flex items-center justify-center">
 
                             <UploadView file={activeFile} />
@@ -60,9 +64,9 @@ export default function Gallary({ files }: { files: UploadResponse[] }) {
                     </>
                 )}
             </div>
-            <div className="p-4 flex gap-4 justify-center">
+            <div className="p-4 flex gap-4 justify-center relative z-10">
                 {files.map((file, index) => (
-                    <div className="size-14 cursor-pointer" key={index}>
+                    <div className="size-14 cursor-pointer rounded overflow-hidden" key={index}>
                         <UploadThumbnail onClick={() => setActiveFile(file)}
                             file={file}
                         />
