@@ -1,8 +1,6 @@
 'use server';
 
 import Gallary from "@/components/Gallery";
-// import UploadThumbnail from "@/components/UploadThumbnail";
-// import UploadView from "@/components/UploadView";
 import { connect } from "@/libs/heplers";
 import { AdModel } from "@/models/Ad";
 

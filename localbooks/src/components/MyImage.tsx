@@ -1,4 +1,5 @@
 "use client"
+import { height, width } from "@fortawesome/free-solid-svg-icons/faBook";
 /* eslint-disable jsx-a11y/alt-text */
 import Image, { ImageProps } from "next/image";
 
@@ -26,7 +27,7 @@ const imageKitLoader = ({ src, width, quality, height, aiCrop }: LoaderProps) =>
     console.log(params);
 
     const paramsString = params.join(",");
-    console.log({ paramsString,width,height,quality })
+    console.log({ paramsString, width, height, quality })
     let urlEndpoint = process.env.NEXT_PUBLIC_IK_ENDPOINT as string;
 
 
@@ -43,15 +44,17 @@ type MyImageProps = ImageProps & {
     height?: number
 }
 
-const MyImage = (props: MyImageProps) => {
+const MyImage = ({ width, height, aiCrop, ...props }: MyImageProps) => {
     return (
         <Image
             loader={args => imageKitLoader({
                 ...args,
-                width: props.width,
-                height: props.height,
-                aiCrop: props.aiCrop
+                width,
+                height,
+                aiCrop
             })}
+            width={width}
+            height={height}
             {...props}
         />
     );

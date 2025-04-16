@@ -3,7 +3,6 @@ import { faCartShopping, faPlus, faSignOut } from "@fortawesome/free-solid-svg-i
 import { faBook } from "@fortawesome/free-solid-svg-icons/faBook";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Session } from "next-auth";
-//import { Session } from "next-auth/react";
 import { signIn, signOut } from "next-auth/react";
 import Image from "next/image";
 import Link from "next/link";

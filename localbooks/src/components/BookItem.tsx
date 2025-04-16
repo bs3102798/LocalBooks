@@ -8,7 +8,7 @@ export default function BookItem({ ad }: { ad: Ad }) {
         <>
             <div
                 
-                className="border border-red-500 min-h-24 flex-col justify-start">
+                className="border border-gray-500 min-h-24 flex-col justify-start">
 
                 {ad.files?.length > 0 && (
                     <div className="rounded-md overflow-hidden">

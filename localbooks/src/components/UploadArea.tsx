@@ -13,7 +13,6 @@ type Props = {
 export default function UploadArea({ files, setFiles }: Props) {
     const [isUploading, setIsUploading] = useState(false);
 
-    // const fileInRef = createRef();
     return (
         <div className="bg-gray-200 p-4 rounded">
             <h2 className="text-center text-xs text-gray-400 uppercase font-bold">
