@@ -1,5 +1,5 @@
 "use client"
-import { height, width } from "@fortawesome/free-solid-svg-icons/faBook";
+//import { height, width } from "@fortawesome/free-solid-svg-icons/faBook";
 /* eslint-disable jsx-a11y/alt-text */
 import Image, { ImageProps } from "next/image";
 
@@ -24,10 +24,10 @@ const imageKitLoader = ({ src, width, quality, height, aiCrop }: LoaderProps) =>
     if (height && aiCrop) {
         params.push(`h-${height}`)
     }
-    console.log(params);
+    //console.log(params);
 
     const paramsString = params.join(",");
-    console.log({ paramsString, width, height, quality })
+    //console.log({ paramsString, width, height, quality })
     let urlEndpoint = process.env.NEXT_PUBLIC_IK_ENDPOINT as string;
 
 

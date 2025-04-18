@@ -1,6 +1,7 @@
 'use client'
 
 import BookItem from "@/components/BookItem";
+import SubmitButton from "@/components/SubmitButton";
 
 import { Ad } from "@/models/Ad";
 
@@ -19,7 +20,18 @@ export default function Home() {
   }, []);
 
   function handleSearch(formData:FormData) {
-    console.log(formData)
+    //const data = Object.fromEntries(formData)
+    const params = new URLSearchParams();
+    formData.forEach((value, key) => {
+      //console.log({key,value})
+      if(typeof value === 'string') {
+        params.set(key, value)
+
+      }
+
+    })
+    const url = `/api/ads?${params.toString()}`;
+    //console.log({url})
 
   }
 
@@ -32,6 +44,7 @@ export default function Home() {
         className="bg-white grow w-1/4 p-4">
 
         <input name="phrase" type="text" placeholder="Search Local Book..." />
+        {/* <SubmitButton>Search</SubmitButton> */}
       </form>
       {/* change color */}
       <div className="bg-gray-200 p-4 grow w-3/4 ">
