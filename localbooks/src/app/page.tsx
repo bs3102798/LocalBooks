@@ -7,17 +7,22 @@ import { Ad } from "@/models/Ad";
 
 import { useEffect, useState } from "react";
 
+
 export default function Home() {
   const [ads, setAds] = useState<Ad[]>([]);
   useEffect(() => {
-    fetch('/api/ads').then(response => {
+    const params = new URLSearchParams();
+    fetchAds(params);
+  }, []);
+
+  function fetchAds(params:URLSearchParams) {
+    const url = `/api/ads?${params.toString()}`;
+    fetch(url).then(response => {
       response.json().then(adsDocs => {
         setAds(adsDocs)
-
       });
     })
-
-  }, []);
+  }
 
   function handleSearch(formData:FormData) {
     //const data = Object.fromEntries(formData)
@@ -26,11 +31,9 @@ export default function Home() {
       //console.log({key,value})
       if(typeof value === 'string') {
         params.set(key, value)
-
       }
-
-    })
-    const url = `/api/ads?${params.toString()}`;
+    });
+   fetchAds(params)
     //console.log({url})
 
   }
