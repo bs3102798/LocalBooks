@@ -5,14 +5,14 @@ import { FilterQuery } from "mongoose";
 export async function GET(req: Request,) {
     await connect();
     //console.log(req)
-    const url = new URL(req.url)
+    const {searchParams} = new URL(req.url)
     //console.log(url.searchParams)
-
-    const phrase = url.searchParams.get('phrase') || null
-    //console.log({phrase})
     const filter: FilterQuery<Ad> = {};
+
+    const phrase = searchParams.get('phrase') || null
+    //console.log({phrase})
     if (phrase) {
-        filter.title = { $regex: '.*' + phrase + '.*', $options: 'i' }
+        filter.title = { $regex: '.*' + searchParams.get('phrase') + '.*', $options: 'i' }
     }
     const adsDocs = await AdModel.find(filter, null, { sort: { createdAt: -1 } })
     return Response.json(adsDocs)
