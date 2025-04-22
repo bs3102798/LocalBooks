@@ -1,7 +1,8 @@
 'use client'
 
 import BookItem from "@/components/BookItem";
-import SubmitButton from "@/components/SubmitButton";
+import { categories } from "@/libs/heplers";
+//import SubmitButton from "@/components/SubmitButton";
 
 import { Ad } from "@/models/Ad";
 
@@ -10,13 +11,14 @@ import { useEffect, useState } from "react";
 
 export default function Home() {
   const [ads, setAds] = useState<Ad[]>([]);
+
   useEffect(() => {
-    const params = new URLSearchParams();
-    fetchAds(params);
+    //const params = new URLSearchParams();
+    fetchAds();
   }, []);
 
-  function fetchAds(params:URLSearchParams) {
-    const url = `/api/ads?${params.toString()}`;
+  function fetchAds(params?: URLSearchParams) {
+    const url = `/api/ads?${params?.toString() || ''}`;
     fetch(url).then(response => {
       response.json().then(adsDocs => {
         setAds(adsDocs)
@@ -24,16 +26,16 @@ export default function Home() {
     })
   }
 
-  function handleSearch(formData:FormData) {
+  function handleSearch(formData: FormData) {
     //const data = Object.fromEntries(formData)
     const params = new URLSearchParams();
     formData.forEach((value, key) => {
       //console.log({key,value})
-      if(typeof value === 'string') {
+      if (typeof value === 'string') {
         params.set(key, value)
       }
     });
-   fetchAds(params)
+    fetchAds(params)
     //console.log({url})
 
   }
@@ -47,6 +49,15 @@ export default function Home() {
         className="bg-white grow w-1/4 p-4">
 
         <input name="phrase" type="text" placeholder="Search Local Book..." />
+        <select name="" id="" defaultValue='0'>
+
+            <option disabled value="0">Select a genre</option>
+            {Object.keys(categories).map((categoryKey) => (
+              <option key={categoryKey} value={categoryKey}>{categories[categoryKey]}</option>
+            ))}
+
+
+        </select>
         {/* <SubmitButton>Search</SubmitButton> */}
       </form>
       {/* change color */}

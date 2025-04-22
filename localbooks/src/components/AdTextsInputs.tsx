@@ -1,3 +1,5 @@
+import { categories } from "@/libs/heplers";
+
 export default function AdTextInputs() {
     return (
         <>
@@ -8,11 +10,9 @@ export default function AdTextInputs() {
             <label htmlFor="categoryIn">Category</label>
             <select name="category" id="categoryIn" defaultValue="0">
                 <option disabled value="0">Select a genre</option>
-                {/* place font awsome images later */}
-                <option value="action">action</option>
-                <option value="historic">historic</option>
-                <option value="romance">romance</option>
-                <option value="comedy">comedy</option>
+                {Object.keys(categories).map((categoryKey) => (
+                    <option key={categoryKey} value={categoryKey}>{categories[categoryKey]}</option>
+                ))}
             </select>
 
             <label htmlFor="descriptionIn">description</label>
