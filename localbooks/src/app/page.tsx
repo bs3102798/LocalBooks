@@ -5,6 +5,8 @@ import { categories } from "@/libs/heplers";
 //import SubmitButton from "@/components/SubmitButton";
 
 import { Ad } from "@/models/Ad";
+import { faStore } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import { useEffect, useState } from "react";
 
@@ -42,23 +44,47 @@ export default function Home() {
 
 
   return (
-    <div className="flex">
+    <div className="flex w-full">
       {/* change color */}
       <form
         action={handleSearch}
-        className="bg-white grow w-1/4 p-4">
+        className="bg-white grow w-1/4 p-4 border-r flex flex-col gap-4">
 
         <input name="phrase" type="text" placeholder="Search Local Book..." />
-        <select name="" id="" defaultValue='0'>
+        <div className="flex flex-col gap-0">
+          <label className="radio-btn group" >
+            <span className="icon">
 
-            <option disabled value="0">Select a genre</option>
-            {Object.keys(categories).map((categoryKey) => (
-              <option key={categoryKey} value={categoryKey}>{categories[categoryKey]}</option>
-            ))}
+            <FontAwesomeIcon icon={faStore}/>
+            </span>
+            <input
+            className="hidden"
+              type="radio"
+              name="category"
+              value=""
+              defaultChecked
+            />
+            All categories
+          </label>
+          {categories.map(({ key, label, icon }) => (
+            <label className="radio-btn group"
+              id=""
+              key={key}
+            >
+              <span className="icon">
+                
+              <FontAwesomeIcon icon={icon} />
+              </span>
+              <input
+              className="hidden"
+                type="radio"
+                name="category"
+                value={key} />
+              {label}
+            </label>
+          ))}
+        </div>
 
-
-        </select>
-        {/* <SubmitButton>Search</SubmitButton> */}
       </form>
       {/* change color */}
       <div className="bg-gray-200 p-4 grow w-3/4 ">
