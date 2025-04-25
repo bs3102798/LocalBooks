@@ -8,11 +8,12 @@ import { Ad } from "@/models/Ad";
 import { faStore } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 
 export default function Home() {
   const [ads, setAds] = useState<Ad[]>([]);
+  const formref = useRef();
 
   useEffect(() => {
     //const params = new URLSearchParams();
@@ -47,13 +48,14 @@ export default function Home() {
     <div className="flex w-full">
       {/* change color */}
       <form
+      ref={formref}
         action={handleSearch}
         className="bg-white grow w-1/4 p-4 border-r flex flex-col gap-4">
 
         <input name="phrase" type="text" placeholder="Search Local Book..." />
         <div className="flex flex-col gap-0">
           <label className="radio-btn group" >
-            <span className="icon">
+            <span className="icon group-has-[:checked]:bg-blue-200 group-has-[:checked]:text-white">
 
             <FontAwesomeIcon icon={faStore}/>
             </span>
@@ -71,7 +73,7 @@ export default function Home() {
               id=""
               key={key}
             >
-              <span className="icon">
+              <span className="icon group-has-[:checked]:bg-blue-200 group-has-[:checked]:text-white">
                 
               <FontAwesomeIcon icon={icon} />
               </span>

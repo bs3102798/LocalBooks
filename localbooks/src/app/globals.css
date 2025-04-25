@@ -18,15 +18,19 @@ label.upload-btn input[type="file"] {
 }
 
 label.radio-btn {
-  @apply has-[:checked]:bg-gray-200 rounded-md p-4 flex items-center gap-2 my-0;
+  @apply has-[:checked]:bg-gray-200 rounded-md py-3 px-3 flex items-center gap-2 my-0;
 }
 
 label.radio-btn span.icon {
-  @apply  group-has-[:checked]:bg-blue-500 size-12 bg-gray-200 rounded-full flex items-center justify-center
+  @apply size-12 bg-gray-200 rounded-full flex items-center justify-center text-gray-200
 }
 
 label.radio-btn svg {
-  @apply h-5
+  @apply h-5 
+}
+
+label.radio-btn{
+  @apply normal-case 
 }
 
 
