@@ -13,10 +13,10 @@ import { useEffect, useRef, useState } from "react";
 
 export default function Home() {
   const [ads, setAds] = useState<Ad[]>([]);
-  const formref = useRef();
+  const formRef = useRef<HTMLFormElement | null>(null)
 
   useEffect(() => {
-    //const params = new URLSearchParams();
+
     fetchAds();
   }, []);
 
@@ -30,7 +30,7 @@ export default function Home() {
   }
 
   function handleSearch(formData: FormData) {
-    //const data = Object.fromEntries(formData)
+
     const params = new URLSearchParams();
     formData.forEach((value, key) => {
       //console.log({key,value})
@@ -48,40 +48,58 @@ export default function Home() {
     <div className="flex w-full">
       {/* change color */}
       <form
-      ref={formref}
+        ref={formRef}
+
         action={handleSearch}
         className="bg-white grow w-1/4 p-4 border-r flex flex-col gap-4">
 
-        <input name="phrase" type="text" placeholder="Search Local Book..." />
-        <div className="flex flex-col gap-0">
-          <label className="radio-btn group" >
-            <span className="icon group-has-[:checked]:bg-blue-200 group-has-[:checked]:text-white">
+        <input
+          // onClick={() => 
 
-            <FontAwesomeIcon icon={faStore}/>
-            </span>
+          //   formRef.current?.requestSubmit()
+          // }
+
+          name="phrase" type="text" placeholder="Search Local Book..." />
+        <div className="flex flex-col gap-0">
+          <label
+
+            className="radio-btn group" >
+
             <input
-            className="hidden"
+              onClick={() =>
+                formRef.current?.requestSubmit()}
+              className="hidden"
               type="radio"
               name="category"
               value=""
               defaultChecked
             />
+            <span className="icon group-has-[:checked]:bg-blue-200 group-has-[:checked]:text-white">
+
+              <FontAwesomeIcon icon={faStore} />
+            </span>
             All categories
           </label>
           {categories.map(({ key, label, icon }) => (
-            <label className="radio-btn group"
+            <label
+
+              className="radio-btn group"
               id=""
               key={key}
             >
-              <span className="icon group-has-[:checked]:bg-blue-200 group-has-[:checked]:text-white">
-                
-              <FontAwesomeIcon icon={icon} />
-              </span>
+
               <input
-              className="hidden"
+                onClick={() =>
+                  formRef.current?.requestSubmit()}
+
+                className="hidden"
                 type="radio"
                 name="category"
                 value={key} />
+              <span className="icon group-has-[:checked]:bg-blue-200 group-has-[:checked]:text-white">
+
+                <FontAwesomeIcon icon={icon} />
+              </span>
               {label}
             </label>
           ))}

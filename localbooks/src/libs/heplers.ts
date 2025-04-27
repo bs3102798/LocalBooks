@@ -10,10 +10,10 @@ export const categories = [
 
     // place font awsome images later
 
-    { key: 'action  ', label: "action", icon: faCar },
+    { key: 'action', label: "action", icon: faCar },
     { key: 'historic', label: "historic", icon: faMobile },
-    { key: 'romance ', label: "romance", icon: faTShirt },
-    { key: 'comedy: ', label: "comedy", icon: faHome },
+    { key: 'romance', label: "romance", icon: faTShirt },
+    { key: 'comedy', label: "comedy", icon: faHome },
 ];
 
 ;
