@@ -1,12 +1,13 @@
 'use client'
 
 import BookItem from "@/components/BookItem";
+import LabelRadioButton from "@/components/LabelRadioButton";
 import { categories } from "@/libs/heplers";
 //import SubmitButton from "@/components/SubmitButton";
 
 import { Ad } from "@/models/Ad";
 import { faStore } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+//import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import { useEffect, useRef, useState } from "react";
 
@@ -61,48 +62,37 @@ export default function Home() {
 
           name="phrase" type="text" placeholder="Search Local Book..." />
         <div className="flex flex-col gap-0">
-          <label
+          <LabelRadioButton
+            name="category"
+            value={''}
+            icon={faStore}
+            onClick={() => formRef?.current?.requestSubmit()}
+            label={"all categoryies"}
+            defaultChecked={true}
+          />
 
-            className="radio-btn group" >
 
-            <input
-              onClick={() =>
-                formRef.current?.requestSubmit()}
-              className="hidden"
-              type="radio"
+          {categories.map(({ key: categoryKey, label, icon }) => (
+            <LabelRadioButton
+              key={categoryKey}
               name="category"
-              value=""
-              defaultChecked
-            />
-            <span className="icon group-has-[:checked]:bg-blue-200 group-has-[:checked]:text-white">
-
-              <FontAwesomeIcon icon={faStore} />
-            </span>
-            All categories
-          </label>
-          {categories.map(({ key, label, icon }) => (
-            <label
-
-              className="radio-btn group"
-              id=""
-              key={key}
-            >
-
-              <input
-                onClick={() =>
-                  formRef.current?.requestSubmit()}
-
-                className="hidden"
-                type="radio"
-                name="category"
-                value={key} />
-              <span className="icon group-has-[:checked]:bg-blue-200 group-has-[:checked]:text-white">
-
-                <FontAwesomeIcon icon={icon} />
-              </span>
-              {label}
-            </label>
+              value={categoryKey}
+              icon={icon}
+              onClick={() => formRef?.current?.requestSubmit()}
+              label={label} />
           ))}
+        </div>
+        <div className=" ">
+          <label>Filter By Price</label>
+          <div className="grid grid-cols-2 gap-4">
+            <div>
+              <input name="min" type="number" placeholder="min" />
+            </div>
+            <div>
+              <input name="max" type="number" placeholder="max" />
+            </div>
+          </div>
+
         </div>
 
       </form>
