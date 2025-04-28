@@ -2,6 +2,7 @@
 
 import BookItem from "@/components/BookItem";
 import LabelRadioButton from "@/components/LabelRadioButton";
+import SubmitButton from "@/components/SubmitButton";
 import { categories } from "@/libs/heplers";
 //import SubmitButton from "@/components/SubmitButton";
 
@@ -94,6 +95,7 @@ export default function Home() {
           </div>
 
         </div>
+        <SubmitButton>search</SubmitButton>
 
       </form>
       {/* change color */}
