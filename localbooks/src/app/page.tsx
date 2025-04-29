@@ -4,12 +4,8 @@ import BookItem from "@/components/BookItem";
 import LabelRadioButton from "@/components/LabelRadioButton";
 import SubmitButton from "@/components/SubmitButton";
 import { categories } from "@/libs/heplers";
-//import SubmitButton from "@/components/SubmitButton";
-
 import { Ad } from "@/models/Ad";
 import { faStore } from "@fortawesome/free-solid-svg-icons";
-//import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-
 import { useEffect, useRef, useState } from "react";
 
 
@@ -41,7 +37,7 @@ export default function Home() {
       }
     });
     fetchAds(params)
-    //console.log({url})
+
 
   }
 
@@ -54,13 +50,7 @@ export default function Home() {
 
         action={handleSearch}
         className="bg-white grow w-1/4 p-4 border-r flex flex-col gap-4">
-
         <input
-          // onClick={() => 
-
-          //   formRef.current?.requestSubmit()
-          // }
-
           name="phrase" type="text" placeholder="Search Local Book..." />
         <div className="flex flex-col gap-0">
           <LabelRadioButton
