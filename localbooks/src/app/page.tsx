@@ -45,7 +45,7 @@ export default function Home() {
   return (
     <div className="flex w-full">
       {/* change color */}
-      <form
+      {/* <form
         ref={formRef}
 
         action={handleSearch}
@@ -87,7 +87,7 @@ export default function Home() {
         </div>
         <SubmitButton>search</SubmitButton>
 
-      </form>
+      </form> */}
       {/* change color */}
       <div className="bg-gray-200 p-4 grow w-3/4 ">
         <h2 className="font-bold mt-2 mb-4">Latest products</h2>
