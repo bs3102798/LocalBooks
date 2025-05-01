@@ -1,17 +1,20 @@
 'use client'
 
 import BookItem from "@/components/BookItem";
-import LabelRadioButton from "@/components/LabelRadioButton";
-import SubmitButton from "@/components/SubmitButton";
-import { categories } from "@/libs/heplers";
+//import LabelRadioButton from "@/components/LabelRadioButton";
+import SearchForm from "@/components/SearchForm";
+//import SubmitButton from "@/components/SubmitButton";
+//import { categories } from "@/libs/heplers";
 import { Ad } from "@/models/Ad";
-import { faStore } from "@fortawesome/free-solid-svg-icons";
-import { useEffect, useRef, useState } from "react";
+//import { faStore } from "@fortawesome/free-solid-svg-icons";
+import { useEffect, 
+  //useRef, 
+  useState } from "react";
 
 
 export default function Home() {
   const [ads, setAds] = useState<Ad[]>([]);
-  const formRef = useRef<HTMLFormElement | null>(null)
+  //const formRef = useRef<HTMLFormElement | null>(null)
 
   useEffect(() => {
 
@@ -44,6 +47,7 @@ export default function Home() {
 
   return (
     <div className="flex w-full">
+      <SearchForm action={handleSearch} />
       {/* change color */}
       {/* <form
         ref={formRef}
