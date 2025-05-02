@@ -21,6 +21,10 @@ export default function Header({ session }: { session: Session | null }) {
                         Post book
                     </span>
                 </Link>
+                <Link href='/cart' className="relative text-[#3F2E56]" >
+                    <span className=" absolute -top-1 -right-2  bg-red-500 text-white text-xs w-4 h-4 rounded-full flex items-center justify-center">3</span>
+                    <FontAwesomeIcon icon={faCartShopping} className="h-5" />
+                </Link>
                 <span className="text-[#3F2E56] text-2xl">|</span>
                 {!session?.user && (
                     <>
@@ -29,12 +33,11 @@ export default function Header({ session }: { session: Session | null }) {
                             onClick={() => signIn('google')}
                             className="bg-[#3F2E56] text-white border-0 px-6"
                         >Login</button>
-                        <button className="text-[#3F2E56]">
-                            <FontAwesomeIcon icon={faCartShopping} className="h-4" />
-                        </button>
+
 
                     </>
                 )}
+
                 {session?.user && (
                     <>
                         <div className=" gap-6">
@@ -43,24 +46,23 @@ export default function Header({ session }: { session: Session | null }) {
                                 <div className="mx-4 text-[#3F2E56] font-bold">
                                     Welcome, {session.user.name}
                                 </div>
-                                <Image 
-                                src={session.user.image as string} alt={'avatar'} width={33} height={33}
-                                className="rounded-md" />
+                                <Image
+                                    src={session.user.image as string} alt={'avatar'} width={33} height={33}
+                                    className="rounded-md" />
                             </Link>
-                            <button className="text-[#3F2E56]">
-                                <FontAwesomeIcon icon={faCartShopping} className="h-4" />
 
-                            </button>
+
                             <button
                                 onClick={() => signOut()}
                                 className="border-0 mx-4 text-[#3F2E56] font-bold inline-flex items-center gap-1 px-2 ">
                                 <FontAwesomeIcon icon={faSignOut} className="h-4" />
                                 <span>Logout</span>
                             </button>
-               
+
                         </div>
                     </>
                 )}
+
 
             </nav>
         </header>

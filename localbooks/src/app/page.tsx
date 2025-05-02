@@ -48,50 +48,8 @@ export default function Home() {
   return (
     <div className="flex w-full">
       <SearchForm action={handleSearch} />
-      {/* change color */}
-      {/* <form
-        ref={formRef}
-
-        action={handleSearch}
-        className="bg-white grow w-1/4 p-4 border-r flex flex-col gap-4">
-        <input
-          name="phrase" type="text" placeholder="Search Local Book..." />
-        <div className="flex flex-col gap-0">
-          <LabelRadioButton
-            name="category"
-            value={''}
-            icon={faStore}
-            onClick={() => formRef?.current?.requestSubmit()}
-            label={"all categoryies"}
-            defaultChecked={true}
-          />
-
-
-          {categories.map(({ key: categoryKey, label, icon }) => (
-            <LabelRadioButton
-              key={categoryKey}
-              name="category"
-              value={categoryKey}
-              icon={icon}
-              onClick={() => formRef?.current?.requestSubmit()}
-              label={label} />
-          ))}
-        </div>
-        <div className=" ">
-          <label>Filter By Price</label>
-          <div className="grid grid-cols-2 gap-4">
-            <div>
-              <input name="min" type="number" placeholder="min" />
-            </div>
-            <div>
-              <input name="max" type="number" placeholder="max" />
-            </div>
-          </div>
-
-        </div>
-        <SubmitButton>search</SubmitButton>
-
-      </form> */}
+      
+      
       {/* change color */}
       <div className="bg-gray-200 p-4 grow w-3/4 ">
         <h2 className="font-bold mt-2 mb-4">Latest products</h2>

@@ -53,7 +53,10 @@ export default function SearchForm({ action}: Props) {
                     </div>
 
                 </div>
-                <SubmitButton>search</SubmitButton>
+                <div>
+                    map
+                </div>
+                <SubmitButton>Search</SubmitButton>
 
             </form>
         </>
