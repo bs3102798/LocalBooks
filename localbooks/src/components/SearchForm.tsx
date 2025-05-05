@@ -3,6 +3,7 @@ import LabelRadioButton from "./LabelRadioButton";
 import SubmitButton from "./SubmitButton";
 import { faStore } from "@fortawesome/free-solid-svg-icons";
 import { categories } from "@/libs/heplers";
+import DistancePicker from "./DistancePicker";
 
 type Props = {
     action: (data: FormData) => void;
@@ -54,7 +55,7 @@ export default function SearchForm({ action}: Props) {
 
                 </div>
                 <div>
-                    map
+                    <DistancePicker />
                 </div>
                 <SubmitButton>Search</SubmitButton>
 
