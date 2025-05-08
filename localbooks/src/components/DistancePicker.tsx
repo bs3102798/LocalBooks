@@ -13,12 +13,25 @@ export default function DistancePicker() {
     const [radius, setRadius] = useState(10 * 1000);
     const [
         center,
-         setCenter] = useState<Location>(locationDefault)
+        setCenter] = useState<Location | null>(null)
     const [zoom, setZoom] = useState<number>(9)
     const mapsDiv = useRef<HTMLDivElement | null>(null)
+    const [geoError, setGeoError] = useState('')
 
     useEffect(() => {
-        loadMap();
+        if (center) {
+
+            loadMap();
+        }
+
+    }, [center]);
+
+    useEffect(() => {
+        navigator.geolocation.getCurrentPosition(ev => {
+
+            setCenter({ lat: ev.coords.latitude, lng: ev.coords.longitude })
+
+        }, err => setGeoError(err.message))
     }, []);
 
     async function loadMap() {
@@ -32,6 +45,7 @@ export default function DistancePicker() {
         const map = new Map(mapsDiv.current as HTMLDivElement, {
             mapId: 'map',
             center: locationDefault,
+            //center: center,
             zoom: 9,
             zoomControl: true,
             mapTypeControl: false,
@@ -45,6 +59,7 @@ export default function DistancePicker() {
             fillColor: "#FF0000",
             fillOpacity: 0.35,
             center: locationDefault,
+            // center: center,
             radius,
             editable: true,
         });
@@ -98,7 +113,14 @@ export default function DistancePicker() {
             radious:{radius / 1000} <br />
             Zoom:{zoom}
             <label>Where</label>
-            <div ref={mapsDiv} className="w-full h-48 bg-gray-200"></div>
+            <div ref={mapsDiv} className="w-full h-48 bg-gray-200">
+                {(!locationDefault || geoError) &&
+                    (
+                        <div className="text-gray-600 p-4">
+                            {geoError || 'loading map...'}
+                        </div>
+                    )}
+            </div>
 
         </>
     )

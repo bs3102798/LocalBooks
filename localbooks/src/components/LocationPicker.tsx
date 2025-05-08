@@ -61,6 +61,7 @@ export default function LocationPicker({
     useEffect(() => {
  
         loadMap()
+       
     }, [gpsCoords])
    
     return (
