@@ -16,4 +16,4 @@ export const categories = [
     { key: 'comedy', label: "comedy", icon: faHome },
 ];
 
-;
+export const defaultRadius = 10 * 1000

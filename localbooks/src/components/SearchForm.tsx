@@ -1,17 +1,27 @@
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import LabelRadioButton from "./LabelRadioButton";
 import SubmitButton from "./SubmitButton";
 import { faStore } from "@fortawesome/free-solid-svg-icons";
-import { categories } from "@/libs/heplers";
+import { categories, defaultRadius } from "@/libs/heplers";
 import DistancePicker from "./DistancePicker";
 
 type Props = {
     action: (data: FormData) => void;
 
 }
+//c//onst defaultRadius = 10 * 1000
 
 export default function SearchForm({ action}: Props) {
+    const [radius, setRadius] = useState(defaultRadius)
     const formRef = useRef<HTMLFormElement | null>(null)
+    useEffect(() => {
+        if(radius !== defaultRadius) {
+            formRef?.current?.requestSubmit();
+
+        }
+
+    },[radius])
+
     return (
         <>
             <form
@@ -55,7 +65,10 @@ export default function SearchForm({ action}: Props) {
 
                 </div>
                 <div>
-                    <DistancePicker />
+                    <input type="hidden" name="radius" value={radius}/>
+                    <DistancePicker 
+                    defaultRadius={defaultRadius}
+                    onChange={newRadius => setRadius(newRadius)}/>
                 </div>
                 <SubmitButton>Search</SubmitButton>
 

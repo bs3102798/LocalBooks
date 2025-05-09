@@ -3,6 +3,7 @@
 import BookItem from "@/components/BookItem";
 //import LabelRadioButton from "@/components/LabelRadioButton";
 import SearchForm from "@/components/SearchForm";
+import { defaultRadius } from "@/libs/heplers";
 //import SubmitButton from "@/components/SubmitButton";
 //import { categories } from "@/libs/heplers";
 import { Ad } from "@/models/Ad";
@@ -22,6 +23,13 @@ export default function Home() {
   }, []);
 
   function fetchAds(params?: URLSearchParams) {
+    if(!params) {
+      params = new URLSearchParams()
+
+    }
+    if (!params.has('radius')) {
+      params.set('radius', defaultRadius.toString())
+    }
     const url = `/api/ads?${params?.toString() || ''}`;
     fetch(url).then(response => {
       response.json().then(adsDocs => {
