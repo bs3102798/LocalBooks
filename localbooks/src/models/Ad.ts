@@ -31,7 +31,7 @@ const adSchema = new Schema<Ad>({
     timestamps: true,
 });
 
-adSchema.index({location: '2dsphere'})
+//adSchema.index({location: '2dsphere'})
 
 //adSchema.ads.createIndex({ location: "2dsphere" });
 

@@ -1,6 +1,7 @@
 'use server';
 
 import Gallary from "@/components/Gallery";
+import LocationMap from "@/components/Locationmap";
 import { connect } from "@/libs/heplers";
 import { AdModel } from "@/models/Ad";
 
@@ -13,6 +14,7 @@ type Props = {
 export default async function AdBookPage(args: Props) {
     await connect();
     const adDoc = await AdModel.findById(args.params.id);
+    //console.log(adDoc)
 
     if (!adDoc) {
         return 'Not found!'
@@ -24,7 +26,7 @@ export default async function AdBookPage(args: Props) {
                 <Gallary files={adDoc.files} />
             </div>
 
-            <div className="w-2/5 p-8 grow shrink-0">
+            <div className="w-2/5 p-8 grow shrink-0 overflow-y-scroll">
                 <h1 className="text-lg font-bold">
                     {adDoc.title}
                 </h1>
@@ -34,6 +36,8 @@ export default async function AdBookPage(args: Props) {
                 <p className="text-sm">{adDoc.description}</p>
                 <label>contact</label>
                 <p>{adDoc.contact}</p>
+                <label>Location</label>
+                <LocationMap className="w-full h-64" location={adDoc.location} />
                 
 
             </div>
