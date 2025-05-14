@@ -28,6 +28,17 @@ export default function DistancePicker({
         if (center) {
 
             loadMap();
+            if (window && window.localStorage) {
+                window.localStorage.setItem('center', JSON.stringify(center));
+                //window.localStorage.setItem('center', JSON.stringify())
+            }
+        }
+        if(!center) {
+            if(window && window.localStorage && window.localStorage.getItem('center')) {
+                const centerFromLS = window.localStorage.getItem('center') || '';
+
+                setCenter (JSON.parse(centerFromLS));
+            }
         }
 
     }, [center]);

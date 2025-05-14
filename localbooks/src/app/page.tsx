@@ -66,6 +66,12 @@ export default function Home() {
             <BookItem ad={ad} key={index} />
           ))}
         </div>
+        {ads?.length === 0 && (
+          <div className="text-gray-400">No products found</div>
+        )}
+        {ads == null && (
+          <div className="text-gray-400">Loading....</div>
+        )}
       </div>
 
     </div>
