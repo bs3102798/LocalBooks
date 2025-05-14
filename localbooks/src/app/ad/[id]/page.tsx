@@ -1,9 +1,11 @@
 'use server';
 
+import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 import Gallary from "@/components/Gallery";
 import LocationMap from "@/components/Locationmap";
-import { connect } from "@/libs/heplers";
+import { connect, formatMoney } from "@/libs/heplers";
 import { AdModel } from "@/models/Ad";
+import { getServerSession } from "next-auth";
 
 type Props = {
     params: {
@@ -14,6 +16,7 @@ type Props = {
 export default async function AdBookPage(args: Props) {
     await connect();
     const adDoc = await AdModel.findById(args.params.id);
+    const session = await getServerSession(authOptions)
     //console.log(adDoc)
 
     if (!adDoc) {
@@ -30,6 +33,11 @@ export default async function AdBookPage(args: Props) {
                 <h1 className="text-lg font-bold">
                     {adDoc.title}
                 </h1>
+                {session && session?.user?.email === adDoc.userEmail && (
+                    <button className="bg-green-400">edit</button>
+                )}
+                <label>price</label>
+                <p>{formatMoney(adDoc.price)}</p>
                 <label>category</label>
                 <p>{adDoc.category}</p>
                 <label>description</label>
@@ -38,8 +46,7 @@ export default async function AdBookPage(args: Props) {
                 <p>{adDoc.contact}</p>
                 <label>Location</label>
                 <LocationMap className="w-full h-64" location={adDoc.location} />
-                
-
+            
             </div>
         </div>
     )

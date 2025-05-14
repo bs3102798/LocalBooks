@@ -16,4 +16,8 @@ export const categories = [
     { key: 'comedy', label: "comedy", icon: faHome },
 ];
 
+export function formatMoney(amount: number): string {
+    return '$' + Intl.NumberFormat('US', {currency: 'USD'}).format(amount)
+}
+
 export const defaultRadius = 10 * 1000
