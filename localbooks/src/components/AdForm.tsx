@@ -1,8 +1,8 @@
-
+'use client'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import UploadArea from "./UploadArea";
 import LocationPicker, { Location } from "./LocationPicker";
-import AdTextInputs from "./AdTextsInputs";
+import AdTextInputs, { AdText } from "./AdTextsInputs";
 import SubmitButton from "./SubmitButton";
 import { useState } from "react";
 import { UploadResponse } from "imagekit/dist/libs/interfaces";
@@ -15,6 +15,7 @@ type Props = {
     // handleSubmit: (formData: FormData) => {};
     defaultFiles?: UploadResponse[];
     defaultLocation: Location;
+    defaultText?: AdText
 
 
 
@@ -24,6 +25,7 @@ export default function AdForm({
     //handleSubmit, 
     defaultFiles = [],
      defaultLocation, 
+     defaultText = {}
     }:Props) {
 
         const [files, setFiles] = useState<UploadResponse[]>(defaultFiles);
@@ -91,7 +93,7 @@ export default function AdForm({
                 </div>
 
                 <div className="grow pt-2">
-                    <AdTextInputs />
+                    <AdTextInputs defaultValues={defaultText} />
                     <SubmitButton>Publish</SubmitButton>
 
                 </div>
