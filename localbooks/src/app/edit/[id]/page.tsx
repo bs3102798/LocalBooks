@@ -1,7 +1,21 @@
 'use server'
-export default function EditPage() {
-    return(
-        <>
-        </>
-    )
+
+import { authOptions } from "@/app/api/auth/[...nextauth]/route";
+import { connect } from "@/libs/heplers";
+import { AdModel } from "@/models/Ad";
+import { getServerSession } from "next-auth";
+
+type Props = {
+    params: {
+        id: string;
+    };
+    searchParams: { [key: string]: string };
+}
+export default async function EditPage(props: Props) {
+    const id = props.params.id;
+    await connect();
+    const session = await getServerSession(authOptions);
+    const adDoc = await AdModel.findById(id)
+
+  
 }

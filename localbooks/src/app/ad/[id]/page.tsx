@@ -8,6 +8,7 @@ import { AdModel } from "@/models/Ad";
 import { faPencil, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { getServerSession } from "next-auth";
+import Link from "next/link";
 
 type Props = {
     params: {
@@ -38,14 +39,14 @@ export default async function AdBookPage(args: Props) {
                 {session && session?.user?.email === adDoc.userEmail && (
                     <div className="mt-2 flex gap-2">
 
-                        <button className=" border border-blue-500 rounded-md py-1 px-2 inline-flex gap-1 items-center">
+                        <Link href={ `/edit/${adDoc._id}`} className=" border border-blue-500 rounded-md py-1 px-2 inline-flex gap-1 items-center">
                             <FontAwesomeIcon icon={faPencil} />
                             <span>Edit</span>
-                        </button>
+                        </Link>
                         <button className=" border border-red-500 rounded-md py-1 px-2 inline-flex gap-1 items-center">
                             <FontAwesomeIcon icon={faTrash} />
                             <span>delete</span>
-                            </button>
+                        </button>
                     </div>
                 )}
                 <label>price</label>
