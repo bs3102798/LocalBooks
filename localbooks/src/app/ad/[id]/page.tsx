@@ -5,6 +5,8 @@ import Gallary from "@/components/Gallery";
 import LocationMap from "@/components/Locationmap";
 import { connect, formatMoney } from "@/libs/heplers";
 import { AdModel } from "@/models/Ad";
+import { faPencil, faTrash } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { getServerSession } from "next-auth";
 
 type Props = {
@@ -34,7 +36,17 @@ export default async function AdBookPage(args: Props) {
                     {adDoc.title}
                 </h1>
                 {session && session?.user?.email === adDoc.userEmail && (
-                    <button className="bg-green-400">edit</button>
+                    <div className="mt-2 flex gap-2">
+
+                        <button className=" border border-blue-500 rounded-md py-1 px-2 inline-flex gap-1 items-center">
+                            <FontAwesomeIcon icon={faPencil} />
+                            <span>Edit</span>
+                        </button>
+                        <button className=" border border-red-500 rounded-md py-1 px-2 inline-flex gap-1 items-center">
+                            <FontAwesomeIcon icon={faTrash} />
+                            <span>delete</span>
+                            </button>
+                    </div>
                 )}
                 <label>price</label>
                 <p>{formatMoney(adDoc.price)}</p>
@@ -46,7 +58,7 @@ export default async function AdBookPage(args: Props) {
                 <p>{adDoc.contact}</p>
                 <label>Location</label>
                 <LocationMap className="w-full h-64" location={adDoc.location} />
-            
+
             </div>
         </div>
     )
