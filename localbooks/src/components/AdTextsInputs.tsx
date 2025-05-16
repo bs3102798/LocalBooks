@@ -1,10 +1,11 @@
 import { categories } from "@/libs/heplers";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+//import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import React from "react";
 
 //export type AdTextField = 'title' | 'price' | 'category' | 'description' | 'contact'
 export type AdText = {
   title?: string;
-  price?: string;
+  price?: string|number;
   category?: string;
   description?: string;
   contact?: string;
@@ -38,16 +39,17 @@ export default function AdTextInputs({ defaultValues }: Props) {
                               {label}
                             </label>
                           ))} */}
-        {categories.map(({ key, label, icon }) => (
-          <>
-            <FontAwesomeIcon icon={icon} />
+        {categories.map(({ key, label }) => (
+          <React.Fragment 
+            key={key}
+          >
+            {/* <FontAwesomeIcon icon={icon} /> */}
             <option
-              key={key}
               value={key}>
               {label}
 
             </option>
-          </>
+          </React.Fragment>
         ))}
       </select>
 

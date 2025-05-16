@@ -7,12 +7,13 @@ import SubmitButton from "./SubmitButton";
 import { useState } from "react";
 import { UploadResponse } from "imagekit/dist/libs/interfaces";
 import { faMapPin } from "@fortawesome/free-solid-svg-icons";
-import { createAd } from "@/app/actions/adActions";
+import { createAd, updateAd } from "@/app/actions/adActions";
 import { redirect } from "next/navigation";
 
 type Props = {
     //handleSubmit: (formData: FormData) => void;
     // handleSubmit: (formData: FormData) => {};
+    id?: string | null;
     defaultFiles?: UploadResponse[];
     defaultLocation: Location;
     defaultText?: AdText
@@ -23,38 +24,53 @@ type Props = {
 
 export default function AdForm({
     //handleSubmit, 
+    id = null,
     defaultFiles = [],
-     defaultLocation, 
-     defaultText = {}
-    }:Props) {
+    defaultLocation,
+    defaultText = {}
+}: Props) {
 
-        const [files, setFiles] = useState<UploadResponse[]>(defaultFiles);
-        const [location, setLocation] = useState<Location>(defaultLocation);
-        const [gpsCoords, setGpsCoords] = useState<Location|null>(null);
+    const [files, setFiles] = useState<UploadResponse[]>(defaultFiles);
+    const [location, setLocation] = useState<Location>(defaultLocation);
+    const [gpsCoords, setGpsCoords] = useState<Location | null>(null);
 
-        function handleFindMyPostionClick() {
-            navigator.geolocation.getCurrentPosition( ev => {
-                //console.log("Location found:", ev.coords.latitude, ev.coords.longitude);
-                const location = {lat: ev.coords.latitude, lng: ev.coords.longitude}
-                setLocation(location)
-                setGpsCoords(location)
-            }, console.error);
+    function handleFindMyPostionClick() {
+        navigator.geolocation.getCurrentPosition(ev => {
+            //console.log("Location found:", ev.coords.latitude, ev.coords.longitude);
+            const location = { lat: ev.coords.latitude, lng: ev.coords.longitude }
+            setLocation(location)
+            setGpsCoords(location)
+        }, console.error);
+    }
+
+    async function handleSubmit(formData: FormData) {
+        // setIsSaving(true)
+        formData.set('location', JSON.stringify(location));
+
+        formData.set('files', JSON.stringify(files));
+        if (id) {
+            formData.set('_id', id)
         }
+        const result = id
+            ? await updateAd(formData)
+            : await createAd(formData)
+        redirect('/ad/' + result._id)
+        // if(id) {
+        //     const result = await updateAd(formData)
+        //     redirect('/ad/'+result._id)
 
-        async function handleSubmit(formData:FormData) {
-            // setIsSaving(true)
-            formData.set('location', JSON.stringify(location));
-     
-            formData.set('files', JSON.stringify(files));
-            const result= await createAd(formData);
-            
-            redirect('/ad/'+result._id)
-            
-            //setIsSaving(false)
-            //console.log({result})
-           
-     
-         }
+        // } else {
+        //     const result = await createAd(formData)
+        //     redirect('/ad/'+result._id)
+        // }
+        //const result= await createAd(formData);
+
+
+        //setIsSaving(false)
+        //console.log({result})
+
+
+    }
 
 
 
@@ -94,7 +110,7 @@ export default function AdForm({
 
                 <div className="grow pt-2">
                     <AdTextInputs defaultValues={defaultText} />
-                    <SubmitButton>Publish</SubmitButton>
+                    <SubmitButton>{id ? 'Save' : 'Publish'}</SubmitButton>
 
                 </div>
             </form>

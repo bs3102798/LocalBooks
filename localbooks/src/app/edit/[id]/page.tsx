@@ -23,10 +23,13 @@ export default async function EditPage(props: Props) {
     if (session?.user?.email !== adDoc?.userEmail) {
         return 'not yours'
     }
+
+    const ad = adDoc.toObject()
     return (
         <>
             <AdForm
-            // defaultText={adDoc}
+            id={adDoc._id}
+             defaultText={ad}
                 defaultFiles={adDoc.files}
                 defaultLocation={adDoc.location}
             />
