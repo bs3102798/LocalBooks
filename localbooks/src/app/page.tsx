@@ -8,9 +8,11 @@ import { defaultRadius } from "@/libs/heplers";
 //import { categories } from "@/libs/heplers";
 import { Ad } from "@/models/Ad";
 //import { faStore } from "@fortawesome/free-solid-svg-icons";
-import { useEffect, 
+import {
+  useEffect,
   //useRef, 
-  useState } from "react";
+  useState
+} from "react";
 
 
 export default function Home() {
@@ -23,7 +25,7 @@ export default function Home() {
   }, []);
 
   function fetchAds(params?: URLSearchParams) {
-    if(!params) {
+    if (!params) {
       params = new URLSearchParams()
 
     }
@@ -56,14 +58,19 @@ export default function Home() {
   return (
     <div className="flex w-full">
       <SearchForm action={handleSearch} />
-      
-      
+
+
       {/* change color */}
       <div className="bg-gray-200 p-4 grow w-3/4 ">
         <h2 className="font-bold mt-2 mb-4">Latest products</h2>
         <div className="grid md:grid-cols-4 gap-x-4 gap-y-6">
           {ads.map((ad, index) => (
-            <BookItem ad={ad} key={index} />
+            <>
+            <div className="grid colum">
+              <BookItem ad={ad} key={index} />
+              <button className="bg-blue-200 text-white">add to cart</button>
+            </div>
+            </>
           ))}
         </div>
         {ads?.length === 0 && (
