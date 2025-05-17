@@ -9,6 +9,7 @@ import { UploadResponse } from "imagekit/dist/libs/interfaces";
 import { faMapPin } from "@fortawesome/free-solid-svg-icons";
 import { createAd, updateAd } from "@/app/actions/adActions";
 import { redirect } from "next/navigation";
+//import { revalidatePath } from "next/cache";
 
 type Props = {
     //handleSubmit: (formData: FormData) => void;
@@ -54,6 +55,7 @@ export default function AdForm({
         const result = id
             ? await updateAd(formData)
             : await createAd(formData)
+      
         redirect('/ad/' + result._id)
         // if(id) {
         //     const result = await updateAd(formData)
