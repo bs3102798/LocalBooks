@@ -17,7 +17,7 @@ export default function Header({ session }: { session: Session | null }) {
                 <FontAwesomeIcon icon={faBook} className="h-6" />
                 <span>LocalBook</span>
             </Link>
-            <nav className="flex gap-4  *:rounded  *:py-1">
+            <nav className="flex gap-2 items-center  *:rounded  *:py-1">
                 <Link href='/new' className="border border-[#3F2E56] text-[#3F2E56] inline-flex items-center gap-1 px-2">
                     <FontAwesomeIcon icon={faPlus} className="h-4" />
                     <span>
@@ -34,7 +34,7 @@ export default function Header({ session }: { session: Session | null }) {
                         <button className="border-0 ">Sign up</button>
                         <button
                             onClick={() => signIn('google')}
-                            className="bg-[#3F2E56] text-white border-0 px-6"
+                            className="bg-[#3F2E56] text-white border-0 px-6 py-1"
                         >Login</button>
 
 
@@ -43,7 +43,7 @@ export default function Header({ session }: { session: Session | null }) {
 
                 {session?.user && (
                     <>
-                        <div className=" gap-6">
+                        <div className=" gap-6 relative flex items-center">
 
                             <button
                                 onClick={() => setShowDropdown(prev => !prev)}
@@ -66,7 +66,9 @@ export default function Header({ session }: { session: Session | null }) {
                             </Link> */}
                             {showDropDown && (
                                 <>
-                                    <div className="bg-black/90 fixed inset-0 z-40 mt-3">
+                                    <div
+                                    onClick={() => setShowDropdown(false)}
+                                     className="bg-black/90 fixed inset-0 z-40 mt-3">
                                         <div className="absolute z-50 right-6 top-9 bg-white rounded-md w-24 border ">
 
                                             <Link className="p-2 block text-center" href={'/my-ads'}>My Ads</Link>
