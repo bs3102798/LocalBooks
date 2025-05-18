@@ -6,8 +6,11 @@ import { Session } from "next-auth";
 import { signIn, signOut } from "next-auth/react";
 import Image from "next/image";
 import Link from "next/link";
+import { useState } from "react";
 
 export default function Header({ session }: { session: Session | null }) {
+    const [showDropDown, setShowDropdown] = useState(false);
+
     return (
         <header className="border-b p-4 flex items-center justify-between h-14">
             <Link className="text-[#3F2E56] font-bold text-2xl inline-flex items-center gap-1 px-2" href="/">
@@ -42,22 +45,48 @@ export default function Header({ session }: { session: Session | null }) {
                     <>
                         <div className=" gap-6">
 
-                            <Link href={'/account'} className="inline-flex items-center gap-1 px-2">
+                            <button
+                                onClick={() => setShowDropdown(prev => !prev)}
+                                className="inline-flex items-center gap-1 px-2">
                                 <div className="mx-4 text-[#3F2E56] font-bold">
                                     Welcome, {session.user.name}
                                 </div>
                                 <Image
                                     src={session.user.image as string} alt={'avatar'} width={33} height={33}
-                                    className="rounded-md" />
-                            </Link>
-
-
-                            <button
-                                onClick={() => signOut()}
-                                className="border-0 mx-4 text-[#3F2E56] font-bold inline-flex items-center gap-1 px-2 ">
-                                <FontAwesomeIcon icon={faSignOut} className="h-4" />
-                                <span>Logout</span>
+                                    className={"rounded-md relative " + (showDropDown ? 'z-50' : '')} />
                             </button>
+
+                            {/* <Link href={'/account'} className="inline-flex items-center gap-1 px-2">
+                                <div className="mx-4 text-[#3F2E56] font-bold">
+                                    Welcome, {session.user.name}
+                                </div>
+                                <Image
+                                    src={session.user.image as string} alt={'avatar'} width={33} height={33}
+                                    className="rounded-md relative z-50" />
+                            </Link> */}
+                            {showDropDown && (
+                                <>
+                                    <div className="bg-black/90 fixed inset-0 z-40 mt-3">
+                                        <div className="absolute z-50 right-6 top-9 bg-white rounded-md w-24 border ">
+
+                                            <Link className="p-2 block text-center" href={'/my-ads'}>My Ads</Link>
+                                            <button
+                                                onClick={() => signOut()}
+                                                className="p-2 block text-[#3F2E56] inline-flex items-center">
+
+                                                {/* //border-0 mx-4 font-bold inline-flex items-center gap-1 px-2  */}
+                                                <FontAwesomeIcon icon={faSignOut} className="h-4" />
+                                                <span>Logout</span>
+                                            </button>
+                                        </div>
+                                    </div>
+
+
+                                </>
+                            )}
+
+
+
 
                         </div>
                     </>
