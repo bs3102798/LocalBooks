@@ -1,13 +1,12 @@
 'use client'
 
 import BookItem from "@/components/BookItem";
-//import LabelRadioButton from "@/components/LabelRadioButton";
+
 import SearchForm from "@/components/SearchForm";
 import { defaultRadius } from "@/libs/heplers";
-//import SubmitButton from "@/components/SubmitButton";
-//import { categories } from "@/libs/heplers";
+
 import { Ad } from "@/models/Ad";
-//import { faStore } from "@fortawesome/free-solid-svg-icons";
+
 import {
   useEffect,
   //useRef, 
