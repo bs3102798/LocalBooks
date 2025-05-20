@@ -6,10 +6,13 @@ import { Session } from "next-auth";
 import { signIn, signOut } from "next-auth/react";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
+//import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 export default function Header({ session }: { session: Session | null }) {
     const [showDropDown, setShowDropdown] = useState(false);
+    const router = useRouter();
 
     return (
         <header className="border-b p-4 flex items-center justify-between h-14">
@@ -71,7 +74,13 @@ export default function Header({ session }: { session: Session | null }) {
                                      className="bg-black/90 fixed inset-0 z-40 mt-3">
                                         <div className="absolute z-50 right-6 top-9 bg-white rounded-md w-24 border ">
 
-                                            <Link className="p-2 block text-center" href={'/my-ads'}>My Ads</Link>
+                                            {/* <Link className="p-2 block text-center" href={'/my-ads'}>My Ads</Link> */}
+                                            <button
+                                            onClick={() => {
+                                                setShowDropdown(false)
+                                                router.push('/my-ads')
+                                            }} 
+                                             className="p-2 block text-center" >My Ads</button>
                                             <button
                                                 onClick={() => signOut()}
                                                 className="p-2 block text-[#3F2E56] inline-flex items-center">

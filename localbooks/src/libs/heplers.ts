@@ -20,4 +20,10 @@ export function formatMoney(amount: number): string {
     return '$' + Intl.NumberFormat('US', {currency: 'USD'}).format(amount)
 }
 
+export function formateDate(date: Date):string {
+
+    return date.toLocaleString() + '' + date.toLocaleTimeString()
+
+}
+
 export const defaultRadius = 10 * 1000

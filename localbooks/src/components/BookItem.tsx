@@ -1,3 +1,4 @@
+'use client';
 import Link from "next/link";
 import UploadThumbnail from "./UploadThumbnail";
 import { redirect } from "next/navigation";

@@ -66,6 +66,9 @@ export default async function AdBookPage(args: Props) {
                 <p>{adDoc.contact}</p>
                 <label>Location</label>
                 <LocationMap className="w-full h-64" location={adDoc.location} />
+                <p className="mt-4 text-xs text-gray-400">
+                    Posted: {JSON.stringify(adDoc.createdAt)}
+                </p>
 
             </div>
         </div>

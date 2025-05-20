@@ -14,6 +14,8 @@ export type Ad = {
         lng: number;
     },
     userEmail: string;
+    createdAt: Date;
+    updateAt: Date;
 }
 
 const adSchema = new Schema<Ad>({
