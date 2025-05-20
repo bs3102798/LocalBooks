@@ -17,6 +17,7 @@ import {
 export default function Home() {
   const [ads, setAds] = useState<Ad[]>([]);
   //const formRef = useRef<HTMLFormElement | null>(null)
+  const [adsParams, setAdsParams] = useState<URLSearchParams> (new URLSearchParams)
 
   useEffect(() => {
 
@@ -35,6 +36,7 @@ export default function Home() {
     fetch(url).then(response => {
       response.json().then(adsDocs => {
         setAds(adsDocs)
+        setAdsParams(params)
       });
     })
   }
@@ -61,7 +63,9 @@ export default function Home() {
 
       {/* change color */}
       <div className="bg-gray-200 p-4 grow w-3/4 ">
-        <h2 className="font-bold mt-2 mb-4">Latest products</h2>
+        <h2 className="font-bold mt-2 mb-4">
+          {}
+        </h2>
         <div className="grid md:grid-cols-4 gap-x-4 gap-y-6">
           {ads.map((ad, index) => (
             <>
