@@ -55,6 +55,11 @@ export default function Home() {
 
   }
 
+  const formDirty = 
+  adsParams.get('phrase') || 
+  adsParams.get('category') ||
+   adsParams.get('min') || adsParams.get('max')
+
 
   return (
     <div className="flex w-full">
@@ -64,7 +69,7 @@ export default function Home() {
       {/* change color */}
       <div className="bg-gray-200 p-4 grow w-3/4 ">
         <h2 className="font-bold mt-2 mb-4">
-          {}
+          {formDirty ? 'Search results' : 'Latest Ads'}
         </h2>
         <div className="grid md:grid-cols-4 gap-x-4 gap-y-6">
           {ads.map((ad, index) => (
