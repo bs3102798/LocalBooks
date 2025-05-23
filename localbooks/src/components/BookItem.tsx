@@ -15,7 +15,7 @@ export default function BookItem({ ad }: { ad: Ad }) {
                     <div className="rounded-md overflow-hidden">
 
                         <UploadThumbnail onClick={() => redirect(`/ad/${ad._id}`)} file={ad.files[0]} />
-                        {/* <Link href={`/ad/${ad._id}`} className="absolute inset-0"></Link> */}
+
                     </div>
                 )}
                 <div>

@@ -74,10 +74,18 @@ export default function Home() {
         <div className="grid md:grid-cols-4 gap-x-4 gap-y-6">
           {ads.map((ad, index) => (
             <>
+
+
+
+{/* add functional cart  */}
             <div className="grid colum">
               <BookItem ad={ad} key={index} />
               <button className="bg-blue-200 text-white">add to cart</button>
             </div>
+
+
+
+
             </>
           ))}
         </div>

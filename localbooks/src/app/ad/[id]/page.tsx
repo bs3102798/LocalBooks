@@ -2,13 +2,13 @@
 
 import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 import DeleteAdButton from "@/components/DeletButton";
-//import DeleteButton from "@/components/DeletButton";
+
 import Gallary from "@/components/Gallery";
 import LocationMap from "@/components/Locationmap";
 import { connect, formateDate, formatMoney } from "@/libs/heplers";
 import { AdModel } from "@/models/Ad";
 import { faPencil, 
-   // faTrash 
+
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { getServerSession } from "next-auth";
@@ -24,8 +24,7 @@ export default async function AdBookPage(args: Props) {
     await connect();
     const adDoc = await AdModel.findById(args.params.id);
     const session = await getServerSession(authOptions)
-    //console.log(adDoc)
-
+   
     if (!adDoc) {
         return 'Not found!'
     }
@@ -47,12 +46,7 @@ export default async function AdBookPage(args: Props) {
                             <FontAwesomeIcon icon={faPencil} />
                             <span>Edit</span>
                         </Link>
-                        {/* <button 
-                        className=" border border-red-500 rounded-md py-1 px-2 inline-flex gap-1 items-center"
-                        >
-                            <FontAwesomeIcon icon={faTrash} />
-                            <span>delete</span>
-                        </button> */}
+                       
                         <DeleteAdButton id={adDoc._id} />
                     </div>
                 )}

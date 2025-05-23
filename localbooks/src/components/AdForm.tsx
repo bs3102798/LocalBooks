@@ -9,11 +9,10 @@ import { UploadResponse } from "imagekit/dist/libs/interfaces";
 import { faMapPin } from "@fortawesome/free-solid-svg-icons";
 import { createAd, updateAd } from "@/app/actions/adActions";
 import { redirect } from "next/navigation";
-//import { revalidatePath } from "next/cache";
+
 
 type Props = {
-    //handleSubmit: (formData: FormData) => void;
-    // handleSubmit: (formData: FormData) => {};
+   
     id?: string | null;
     defaultFiles?: UploadResponse[];
     defaultLocation: Location;
@@ -57,19 +56,7 @@ export default function AdForm({
             : await createAd(formData)
       
         redirect('/ad/' + result._id)
-        // if(id) {
-        //     const result = await updateAd(formData)
-        //     redirect('/ad/'+result._id)
-
-        // } else {
-        //     const result = await createAd(formData)
-        //     redirect('/ad/'+result._id)
-        // }
-        //const result= await createAd(formData);
-
-
-        //setIsSaving(false)
-        //console.log({result})
+      
 
 
     }

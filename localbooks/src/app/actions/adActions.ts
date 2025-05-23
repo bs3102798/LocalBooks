@@ -29,7 +29,7 @@ export async function createAd(formData: FormData) {
 export async function updateAd(formData: FormData) {
     const {_id, files, location, ...data } = Object.fromEntries(formData)
     await connect();
-    // const session = await getServerSession(authOptions);
+    
     const adDoc = await AdModel.findById(_id)
     const session = await getServerSession(authOptions)
     if(!adDoc || adDoc.userEmail !== session?.user?.email) {
@@ -40,7 +40,7 @@ export async function updateAd(formData: FormData) {
         ...data,
         files: JSON.parse(files as string),
         location: JSON.parse(location as string),
-        // userEmail: session?.user?.email,
+       
     }
     const newAdDoc = await AdModel.findByIdAndUpdate(_id, adData)
     revalidatePath(`/ad/`+_id)

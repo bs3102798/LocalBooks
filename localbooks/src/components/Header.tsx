@@ -27,10 +27,24 @@ export default function Header({ session }: { session: Session | null }) {
                         Post book
                     </span>
                 </Link>
+
+
+
+
+
+{/* need the data for  */}
                 <Link href='/cart' className="relative text-[#3F2E56]" >
                     <span className=" absolute -top-1 -right-2  bg-red-500 text-white text-xs w-4 h-4 rounded-full flex items-center justify-center">3</span>
                     <FontAwesomeIcon icon={faCartShopping} className="h-5" />
                 </Link>
+
+
+
+                
+
+
+
+
                 <span className="text-[#3F2E56] text-2xl">|</span>
                 {!session?.user && (
                     <>
