@@ -1,5 +1,5 @@
 "use client"
-//import { height, width } from "@fortawesome/free-solid-svg-icons/faBook";
+
 /* eslint-disable jsx-a11y/alt-text */
 import Image, { ImageProps } from "next/image";
 

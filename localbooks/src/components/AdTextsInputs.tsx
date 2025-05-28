@@ -1,8 +1,8 @@
 import { categories } from "@/libs/heplers";
-//import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
 import React from "react";
 
-//export type AdTextField = 'title' | 'price' | 'category' | 'description' | 'contact'
+
 export type AdText = {
   title?: string;
   price?: string|number;

@@ -3,13 +3,13 @@ import LabelRadioButton from "./LabelRadioButton";
 import SubmitButton from "./SubmitButton";
 import { faStore } from "@fortawesome/free-solid-svg-icons";
 import { categories, defaultRadius } from "@/libs/heplers";
-//import DistancePicker from "./DistancePicker";
+
 
 type Props = {
     action: (data: FormData) => void;
 
 }
-//c//onst defaultRadius = 10 * 1000
+
 
 export default function SearchForm({ action}: Props) {
     const [radius, 
