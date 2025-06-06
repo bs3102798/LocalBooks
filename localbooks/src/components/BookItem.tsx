@@ -21,6 +21,12 @@ export default function BookItem({ ad }: { ad: Ad }) {
                 <div>
                     <p className="mt-1 font-bold">${ad.price}</p>
                     <Link href={`/ad/${ad._id}`}>{ad.title}</Link>
+                    <button
+                    onClick={() => {}}
+                    className="mt-4 bg-blue-300 text-white rounded-full px-2 py-2"
+                    >
+                        add to cart ${ad.price}
+                    </button>
                 </div>
             </div>
         </>

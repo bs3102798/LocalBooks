@@ -80,7 +80,7 @@ export default function Home() {
 {/* add functional cart  */}
             <div className="grid colum">
               <BookItem ad={ad} key={index} />
-              <button className="bg-blue-200 text-white">add to cart</button>
+              {/* <button className="bg-blue-200 text-white">add to cart</button> */}
             </div>
 
 
