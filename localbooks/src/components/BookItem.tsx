@@ -3,8 +3,12 @@ import Link from "next/link";
 import UploadThumbnail from "./UploadThumbnail";
 import { redirect } from "next/navigation";
 import { Ad } from "@/models/Ad";
+import { useContext } from "react";
+import { CartContext } from "./CartProvider";
 
 export default function BookItem({ ad }: { ad: Ad }) {
+ 
+    const {addToCart} = useContext(CartContext)
     return (
         <>
             <div
@@ -22,7 +26,7 @@ export default function BookItem({ ad }: { ad: Ad }) {
                     <p className="mt-1 font-bold">${ad.price}</p>
                     <Link href={`/ad/${ad._id}`}>{ad.title}</Link>
                     <button
-                    onClick={() => {}}
+                    onClick={() => addToCart()}
                     className="mt-4 bg-blue-300 text-white rounded-full px-2 py-2"
                     >
                         add to cart ${ad.price}

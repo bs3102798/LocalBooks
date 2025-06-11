@@ -7,11 +7,21 @@ import { createContext, useState,
 export const CartContext = createContext({});
 
 export default function CartProvider({ children }: { children: React.ReactNode }) {
-  const [cartProducs, setCartProducts] = useState([]);
+  const [cartProducts, setCartProducts] = useState([]);
+
+  function addToCart(product, size=null, extras=[] ) {
+
+    setCartProducts(prevProducts => {
+        const cartProduct = {...product, size, extras}
+        const newProducts = [...prevProducts, cartProduct ]
+        return newProducts
+    })
+
+  }
 
   return (
     <CartContext.Provider value={{
-        cartProducs, setCartProducts,
+        cartProducts, setCartProducts,
      }}>
       {children}
     </CartContext.Provider>
