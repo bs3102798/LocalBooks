@@ -4,16 +4,40 @@ import { createContext, useState,
     //useState 
 } from "react";
 
-export const CartContext = createContext({});
+export type CartProduct = {
+    id: string;
+    name: string;
+    price: number;
+    size?: string | null;
+    extras?: string[];
+  };
+
+export type CartContextType = {
+    cartProducts: CartProduct[];
+    setCartProducts: React.Dispatch<React.SetStateAction<CartProduct[]>>;
+    addToCart: (
+      product: Omit<CartProduct, "size" | "extras">,
+      size?: string | null,
+      extras?: string[]
+    ) => void;
+  };
+
+// export const CartContext = createContext({});
+export const CartContext = createContext<CartContextType | undefined>(undefined);
 
 export default function CartProvider({ children }: { children: React.ReactNode }) {
-  const [cartProducts, setCartProducts] = useState([]);
 
-  function addToCart(product, size=null, extras=[] ) {
+  const [cartProducts, setCartProducts] = useState<CartProduct[]>([]);
+
+//   function addToCart(product, size=null, extras=[] ) {
+    function addToCart(product: Omit<CartProduct, 'size' | 'extras'>, size: string | null = null, extras: string[] = []){
 
     setCartProducts(prevProducts => {
-        const cartProduct = {...product, size, extras}
+
+        const cartProduct: CartProduct = {...product, size, extras}
+
         const newProducts = [...prevProducts, cartProduct ]
+
         return newProducts
     })
 
@@ -21,7 +45,7 @@ export default function CartProvider({ children }: { children: React.ReactNode }
 
   return (
     <CartContext.Provider value={{
-        cartProducts, setCartProducts,
+        cartProducts, setCartProducts, addToCart,
      }}>
       {children}
     </CartContext.Provider>

@@ -8,11 +8,22 @@ import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 //import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { CartContext } from "./CartProvider";
 
 export default function Header({ session }: { session: Session | null }) {
     const [showDropDown, setShowDropdown] = useState(false);
     const router = useRouter();
+    //const {cartProducts} = useContext(CartContext)
+
+    const cart = useContext(CartContext);
+
+    if (!cart) {
+        throw new Error("CartContext is undefined. Make sure you are using the CartProvider.");
+    }
+
+    const { cartProducts } = cart;
+
 
     return (
         <header className="border-b p-4 flex items-center justify-between h-14">
@@ -32,15 +43,30 @@ export default function Header({ session }: { session: Session | null }) {
 
 
 
-{/* need the data for  */}
-                <Link href='/cart' className="relative text-[#3F2E56]" >
-                    <span className=" absolute -top-1 -right-2  bg-red-500 text-white text-xs w-4 h-4 rounded-full flex items-center justify-center">3</span>
-                    <FontAwesomeIcon icon={faCartShopping} className="h-5" />
-                </Link>
+                {/* need the data for  */}
+                {/* {cartProducts?.length > 0 && (
+                    <Link href={'/cart'} className="relative text-[#3F2E56]">cart
+
+                        <span className=" absolute -top-1 -right-2  bg-red-500 text-white text-xs w-4 h-4 rounded-full flex items-center justify-center">
+                            ({cartProducts.length})
 
 
 
-                
+                        </span>
+                        <FontAwesomeIcon icon={faCartShopping} className="h-5" />
+
+                    </Link>
+
+
+
+
+
+
+                )} */}
+
+
+
+
 
 
 
@@ -73,28 +99,21 @@ export default function Header({ session }: { session: Session | null }) {
                                     className={"rounded-md relative " + (showDropDown ? 'z-50' : '')} />
                             </button>
 
-                            {/* <Link href={'/account'} className="inline-flex items-center gap-1 px-2">
-                                <div className="mx-4 text-[#3F2E56] font-bold">
-                                    Welcome, {session.user.name}
-                                </div>
-                                <Image
-                                    src={session.user.image as string} alt={'avatar'} width={33} height={33}
-                                    className="rounded-md relative z-50" />
-                            </Link> */}
+
                             {showDropDown && (
                                 <>
                                     <div
-                                    onClick={() => setShowDropdown(false)}
-                                     className="bg-black/90 fixed inset-0 z-40 mt-3">
+                                        onClick={() => setShowDropdown(false)}
+                                        className="bg-black/90 fixed inset-0 z-40 mt-3">
                                         <div className="absolute z-50 right-6 top-9 bg-white rounded-md w-24 border ">
 
                                             {/* <Link className="p-2 block text-center" href={'/my-ads'}>My Ads</Link> */}
                                             <button
-                                            onClick={() => {
-                                                setShowDropdown(false)
-                                                router.push('/my-ads')
-                                            }} 
-                                             className="p-2 block text-center" >My Ads</button>
+                                                onClick={() => {
+                                                    setShowDropdown(false)
+                                                    router.push('/my-ads')
+                                                }}
+                                                className="p-2 block text-center" >My Ads</button>
                                             <button
                                                 onClick={() => signOut()}
                                                 className="p-2 block text-[#3F2E56] inline-flex items-center">
@@ -115,6 +134,25 @@ export default function Header({ session }: { session: Session | null }) {
 
                         </div>
                     </>
+                )}
+                    {cartProducts?.length > 0 && (
+                    <Link href={'/cart'} className="relative text-[#3F2E56]">cart
+
+                        <span className=" absolute -top-1 -right-2  bg-red-500 text-white text-xs w-4 h-4 rounded-full flex items-center justify-center">
+                            ({cartProducts.length})
+
+
+
+                        </span>
+                        <FontAwesomeIcon icon={faCartShopping} className="h-5" />
+
+                    </Link>
+
+
+
+
+
+
                 )}
 
 

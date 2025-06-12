@@ -5,6 +5,7 @@ import Header from "@/components/Header";
 import { getServerSession } from "next-auth";
 import { authOptions } from "./api/auth/[...nextauth]/route";
 import CartProvider from "@/components/CartProvider";
+// import CartProvider from "@/components/CartProvider";
 //import { createContext } from "react";
 
 const geistSans = Geist({
@@ -34,10 +35,10 @@ export default async function RootLayout({
   return (
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+        <CartProvider>
         <Header session={session} />
         {/* <CartContext.Provider value={{}}>
         </CartContext.Provider> */}
-        <CartProvider>
           {children}
 
         </CartProvider>

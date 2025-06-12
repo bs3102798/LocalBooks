@@ -7,8 +7,13 @@ import { useContext } from "react";
 import { CartContext } from "./CartProvider";
 
 export default function BookItem({ ad }: { ad: Ad }) {
+    const cart =  useContext(CartContext)
+
+    if (!cart) {
+        throw new Error("CartContext is undefined. Make sure BookItem is used inside a <CartProvider>");
+    }
  
-    const {addToCart} = useContext(CartContext)
+    const {addToCart} = cart
     return (
         <>
             <div
@@ -26,7 +31,7 @@ export default function BookItem({ ad }: { ad: Ad }) {
                     <p className="mt-1 font-bold">${ad.price}</p>
                     <Link href={`/ad/${ad._id}`}>{ad.title}</Link>
                     <button
-                    onClick={() => addToCart()}
+                    onClick={() => addToCart({ id: ad._id, name: ad.title, price: ad.price })}
                     className="mt-4 bg-blue-300 text-white rounded-full px-2 py-2"
                     >
                         add to cart ${ad.price}
