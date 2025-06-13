@@ -1,6 +1,6 @@
 "use client";
 
-import { createContext, useState, 
+import { createContext, useEffect, useState, 
     //useState 
 } from "react";
 
@@ -28,6 +28,12 @@ export const CartContext = createContext<CartContextType | undefined>(undefined)
 export default function CartProvider({ children }: { children: React.ReactNode }) {
 
   const [cartProducts, setCartProducts] = useState<CartProduct[]>([]);
+
+  const ls = typeof window !== "undefined" ? window.localStorage : null;
+
+  useEffect(() => {
+
+  } ,[cartProducts])
 
 //   function addToCart(product, size=null, extras=[] ) {
     function addToCart(product: Omit<CartProduct, 'size' | 'extras'>, size: string | null = null, extras: string[] = []){

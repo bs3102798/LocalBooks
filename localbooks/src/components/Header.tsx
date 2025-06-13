@@ -140,9 +140,6 @@ export default function Header({ session }: { session: Session | null }) {
 
                         <span className=" absolute -top-1 -right-2  bg-red-500 text-white text-xs w-4 h-4 rounded-full flex items-center justify-center">
                             ({cartProducts.length})
-
-
-
                         </span>
                         <FontAwesomeIcon icon={faCartShopping} className="h-5" />
 
