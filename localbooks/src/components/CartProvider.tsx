@@ -32,8 +32,23 @@ export default function CartProvider({ children }: { children: React.ReactNode }
   const ls = typeof window !== "undefined" ? window.localStorage : null;
 
   useEffect(() => {
+    if(ls && ls.getItem('cart')) {
+        setCartProducts( JSON.parse( ls.getItem('cart')))
+    }
+  
 
-  } ,[cartProducts])
+  } ,[])
+
+function saveCartProductsToLocalStorage(cartProducts: CartProduct[]) {
+    
+        if(ls) {
+            ls.setItem('cart', JSON.stringify(cartProducts))
+            
+        }
+    
+      
+}
+
 
 //   function addToCart(product, size=null, extras=[] ) {
     function addToCart(product: Omit<CartProduct, 'size' | 'extras'>, size: string | null = null, extras: string[] = []){
@@ -43,6 +58,7 @@ export default function CartProvider({ children }: { children: React.ReactNode }
         const cartProduct: CartProduct = {...product, size, extras}
 
         const newProducts = [...prevProducts, cartProduct ]
+        saveCartProductsToLocalStorage(newProducts)
 
         return newProducts
     })
