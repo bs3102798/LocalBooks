@@ -14,6 +14,15 @@ export default function BookItem({ ad }: { ad: Ad }) {
     }
  
     const {addToCart} = cart
+
+    function handleAddToCartButtonClick() {
+        //add Toast to give affect
+        addToCart({ id: ad._id, name: ad.title, price: ad.price })
+       
+
+    }
+
+
     return (
         <>
             <div
@@ -31,7 +40,9 @@ export default function BookItem({ ad }: { ad: Ad }) {
                     <p className="mt-1 font-bold">${ad.price}</p>
                     <Link href={`/ad/${ad._id}`}>{ad.title}</Link>
                     <button
-                    onClick={() => addToCart({ id: ad._id, name: ad.title, price: ad.price })}
+                    type="button"
+                    //onClick={() => addToCart({ id: ad._id, name: ad.title, price: ad.price })}
+                    onClick={handleAddToCartButtonClick}
                     className="mt-4 bg-blue-300 text-white rounded-full px-2 py-2"
                     >
                         add to cart ${ad.price}

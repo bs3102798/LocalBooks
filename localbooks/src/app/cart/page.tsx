@@ -1,7 +1,7 @@
 export default function Cart() {
-    return(
+    return (
         <>
-        <h1>cart</h1>
+            <h1>cart</h1>
         </>
     )
 }
