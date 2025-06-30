@@ -18,7 +18,7 @@ export type Ad = {
     updateAt: Date;
 }
 
-const adSchema = new Schema<Ad>({
+export const adSchema = new Schema<Ad>({
     title: String,
     price: Number,
     category: String,

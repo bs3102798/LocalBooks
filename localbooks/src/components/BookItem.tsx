@@ -17,7 +17,7 @@ export default function BookItem({ ad }: { ad: Ad }) {
 
     function handleAddToCartButtonClick() {
         //add Toast to give affect
-        addToCart({ id: ad._id, name: ad.title, price: ad.price })
+        addToCart({ id: ad._id, name: ad.title, price: ad.price, description: ad.description, files: ad.files, })
        
 
     }

@@ -5,7 +5,15 @@ import {
     //useState 
 } from "react";
 
+export type UploadedFile = {
+    url: string;
+    name: string;
+
+};
+
 export type CartProduct = {
+    files: UploadedFile[];
+    description: string;
     id: string;
     name: string;
     price: number;
@@ -50,8 +58,8 @@ export default function CartProvider({ children }: { children: React.ReactNode }
         setCartProducts(prevCartProducts => {
             const newCartProducts = prevCartProducts
                 .filter((v, index) => index !== indexToRemove)
-                saveCartProductsToLocalStorage(newCartProducts)
-                return newCartProducts
+            saveCartProductsToLocalStorage(newCartProducts)
+            return newCartProducts
         })
 
     }
@@ -72,7 +80,7 @@ export default function CartProvider({ children }: { children: React.ReactNode }
 
         setCartProducts(prevProducts => {
 
-            const cartProduct: CartProduct = { ...product, size, extras }
+            const cartProduct: CartProduct = { ...product, size, extras, }
 
             const newProducts = [...prevProducts, cartProduct]
             saveCartProductsToLocalStorage(newProducts)
@@ -84,7 +92,7 @@ export default function CartProvider({ children }: { children: React.ReactNode }
 
     return (
         <CartContext.Provider value={{
-            cartProducts, setCartProducts, addToCart, 
+            cartProducts, setCartProducts, addToCart,
             removeCartProduct, clearCart,
         }}>
             {children}
