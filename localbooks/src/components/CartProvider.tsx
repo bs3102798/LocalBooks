@@ -11,6 +11,17 @@ export type UploadedFile = {
 
 };
 
+export function cartProductPrice(cartProduct) {
+    let price = cartProduct.basePrice;
+    if(cartProduct.size) {
+        price += cartProduct.price;
+
+    }
+    return price 
+
+}
+
+
 export type CartProduct = {
     files: UploadedFile[];
     description: string;
