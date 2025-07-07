@@ -12,7 +12,7 @@ export type UploadedFile = {
 };
 
 export function cartProductPrice(cartProduct) {
-    let price = cartProduct.basePrice;
+    let price = cartProduct.price;
     if(cartProduct.size) {
         price += cartProduct.price;
 

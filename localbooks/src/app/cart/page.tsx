@@ -1,6 +1,6 @@
 /* eslint-disable react/jsx-key */
 'use client'
-import { CartContext } from "@/components/CartProvider"
+import { CartContext, cartProductPrice } from "@/components/CartProvider"
 import { faTrash } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 //import DeleteAdButton from "@/components/DeletButton"
@@ -9,6 +9,13 @@ import { useContext } from "react"
 
 export default function Cart() {
     const { cartProducts, removeCartProduct } = useContext(CartContext)
+
+    let total = 0;
+
+    for (const p of cartProducts) {
+       // console.log(cartProductPrice(p))
+        total += cartProductPrice(p)
+    }
 
     //console.log(cartProducts)
     return (
@@ -27,8 +34,8 @@ export default function Cart() {
                                 <div className="w-24">
                                     <Image width={"240"} height={"240"}
                                         //  src={product.files}
-                                        src={product.url?.[0]?.url || "/placeholder.png"}
-                                        alt={''} />
+                                        src={product.files?.[0]?.url || "/placeholder.png"}
+                                        alt={product.name} />
                                 </div>
                                 <div className="grow">
                                     <h2 className="font-semibold">
@@ -50,8 +57,8 @@ export default function Cart() {
                                 </div>
 
                                 <button className="p-2" type="button" onClick={() => removeCartProduct(index)}>
-                                                    <FontAwesomeIcon icon={faTrash} />
-                                                    
+                                    <FontAwesomeIcon icon={faTrash} />
+
                                     {/* <DeleteAdButton id={product._id} /> */}
                                     {/* look at route.ts and find out how to add product._id to the delete
                                     request it should be in the line const adDoc */}
@@ -59,8 +66,11 @@ export default function Cart() {
 
                             </div>
                         ))}
+                        <div className="py-4 text-right">Total: ${total} </div>
                     </div>
-                    <div>right</div>
+                    <div>
+                        right
+                    </div>
                 </div>
             </section>
         </>
