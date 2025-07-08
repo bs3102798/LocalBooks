@@ -1,6 +1,8 @@
 /* eslint-disable react/jsx-key */
 'use client'
+import AddressInputs from "@/components/AddressInputs"
 import { CartContext, cartProductPrice } from "@/components/CartProvider"
+import SubmitButton from "@/components/SubmitButton"
 import { faTrash } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 //import DeleteAdButton from "@/components/DeletButton"
@@ -13,7 +15,7 @@ export default function Cart() {
     let total = 0;
 
     for (const p of cartProducts) {
-       // console.log(cartProductPrice(p))
+        // console.log(cartProductPrice(p))
         total += cartProductPrice(p)
     }
 
@@ -66,10 +68,27 @@ export default function Cart() {
 
                             </div>
                         ))}
-                        <div className="py-4 text-right">Total: ${total} </div>
+                        <div className="py-4 text-right pr-12">
+                            <span className="text-gray-500">
+                                SubTotal:
+                            </span>
+                            <span className="text-lg font-semibold pl-2">
+                                ${total}
+                            </span>
+                        </div>
                     </div>
-                    <div>
-                        right
+                    <div className="bg-gray-200 p-4 rounded-lg">
+                        <h2>checkout</h2>
+                        <form >
+                            {/* <label>Address</label>
+                            <input type="text" placeholder="Street Address" /> */}
+                            <AddressInputs />
+                            <button className="bg-[#3F2E32] mt-2 text-white px-6 py-2 rounded font-bold w-full" type="submit">
+                               Pay ${total}
+                            </button>
+                            {/* <SubmitButton >Pay ${total} </SubmitButton> */}
+                        </form>
+                        
                     </div>
                 </div>
             </section>
