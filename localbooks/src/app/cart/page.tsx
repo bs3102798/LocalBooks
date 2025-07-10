@@ -2,15 +2,34 @@
 'use client'
 import AddressInputs from "@/components/AddressInputs"
 import { CartContext, cartProductPrice } from "@/components/CartProvider"
-import SubmitButton from "@/components/SubmitButton"
+import { Address } from "@/models/Address"
+//import SubmitButton from "@/components/SubmitButton"
 import { faTrash } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 //import DeleteAdButton from "@/components/DeletButton"
 import Image from "next/image"
-import { useContext } from "react"
+import { useContext, useState } from "react"
 
 export default function Cart() {
-    const { cartProducts, removeCartProduct } = useContext(CartContext)
+    const { cartProducts, removeCartProduct } = useContext(CartContext);
+    // const [adressProps, setAddressProp] = useState<Address>({
+
+    // })
+
+
+    const [address, setAddress] = useState<Address>({
+        phone: '',
+        streetAddress: '',
+        postalCode: '',
+        city: '',
+        country: '',
+      });
+    
+
+      const handleAddressChange = (field: keyof Address, value: string) => {
+        setAddress(prev => ({ ...prev, [field]: value }));
+      };
+
 
     let total = 0;
 
@@ -80,9 +99,12 @@ export default function Cart() {
                     <div className="bg-gray-200 p-4 rounded-lg">
                         <h2>checkout</h2>
                         <form >
-                            {/* <label>Address</label>
-                            <input type="text" placeholder="Street Address" /> */}
-                            <AddressInputs />
+                            
+                            <AddressInputs adressProps={address}
+                        setAddressProp={handleAddressChange} 
+                         />
+
+
                             <button className="bg-[#3F2E32] mt-2 text-white px-6 py-2 rounded font-bold w-full" type="submit">
                                Pay ${total}
                             </button>

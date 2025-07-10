@@ -1,15 +1,32 @@
-type Props = {
-    adressProps: AddressProps;
-    setAddressProp: (field: keyof AddressProps, value: string) => void;
-  };
+import { Address } from "@/models/Address";
+//import { useState } from "react";
 
-export default function AddressInputs({ adressProps ={}, setAddressProp }: Props) {
-   // if (!adressProps) return null;
-    const { phone, streetAddress, postalCode, city , conunty} = adressProps;
+type Props = {
+    adressProps: Address;
+    setAddressProp: (field: keyof Address, value: string) => void;
+};
+
+export default function AddressInputs({ adressProps = {
+    phone: '',
+    streetAddress: "",
+    postalCode: '',
+    city: "",
+    country: "",
+}, setAddressProp }: Props) {
+    // if (!adressProps) return null;
+    const { phone, streetAddress, postalCode, city, country } = adressProps;
+    //    const [adressProps, setAddressProp] = useState<Address>({
+
+    // })
 
     return (
         <>
             <div className="mb-4">
+                <div>
+                    <label>Street address</label>
+                    <input type="text" placeholder="Street Address"
+                        value={streetAddress} onChange={ev => setAddressProp('streetAddress', ev.target.value)} />
+                </div>
 
                 <div>
                     <label>Phone</label>
@@ -17,11 +34,7 @@ export default function AddressInputs({ adressProps ={}, setAddressProp }: Props
                         value={phone} onChange={ev => setAddressProp('phone', ev.target.value)} />
                 </div>
 
-                <div>
-                    <label>Street address</label>
-                    <input type="text" placeholder="Street Address"
-                        value={streetAddress} onChange={ev => setAddressProp('streetAddress', ev.target.value)} />
-                </div>
+
 
                 <div className="grid grid-cols-2 gap-2">
                     <div>
@@ -41,7 +54,7 @@ export default function AddressInputs({ adressProps ={}, setAddressProp }: Props
                 <div>
                     <label>country</label>
                     <input type="text" placeholder=""
-                        value={conunty} onChange={ev => setAddressProp('country', ev.target.value)} />
+                        value={country} onChange={ev => setAddressProp('country', ev.target.value)} />
                 </div>
 
             </div>
