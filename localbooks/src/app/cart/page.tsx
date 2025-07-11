@@ -2,33 +2,50 @@
 'use client'
 import AddressInputs from "@/components/AddressInputs"
 import { CartContext, cartProductPrice } from "@/components/CartProvider"
-import { Address } from "@/models/Address"
+//import { Address } from "@/models/Address"
 //import SubmitButton from "@/components/SubmitButton"
 import { faTrash } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 //import DeleteAdButton from "@/components/DeletButton"
 import Image from "next/image"
-import { useContext, useState } from "react"
+import { SetStateAction, useContext, useState } from "react"
 
 export default function Cart() {
     const { cartProducts, removeCartProduct } = useContext(CartContext);
+    const [city, setCity] = useState('')
+    const [phone, setPhone] = useState('')
+    const [country, setCountry] = useState('')
+    const [postalCode, setPostalCode] = useState('')
+    const [streetAddress, setStreetAddress] = useState('')
+
+    
     // const [adressProps, setAddressProp] = useState<Address>({
 
     // })
 
 
-    const [address, setAddress] = useState<Address>({
-        phone: '',
-        streetAddress: '',
-        postalCode: '',
-        city: '',
-        country: '',
-      });
-    
+    // const [address, setAddress] = useState<Address>({
+    //     phone: '',
+    //     streetAddress: '',
+    //     postalCode: '',
+    //     city: '',
+    //     country: '',
+    // });
 
-      const handleAddressChange = (field: keyof Address, value: string) => {
-        setAddress(prev => ({ ...prev, [field]: value }));
-      };
+
+    //   const handleAddressChange = (field: keyof Address, value: string) => {
+    //     setAddress(prev => ({ ...prev, [field]: value }));
+    //   };
+
+    function handleAddressChange(propName: string, value: SetStateAction<string>) {
+        if (propName === 'phone') setPhone(value)
+        if (propName === 'city') setCity(value)
+        if (propName === 'country') setCountry(value)
+        if (propName === 'streetAddress') setStreetAddress(value)
+        if (propName === 'postalCode') setPostalCode(value)
+
+
+    }
 
 
     let total = 0;
@@ -50,7 +67,7 @@ export default function Cart() {
                         {cartProducts?.length === 0 && (
                             <div>No Products in your cart</div>
                         )}
-                        {cartProducts?.length > 0 && cartProducts.map((product: any, index) => (
+                        {cartProducts?.length > 0 && cartProducts.map((product: any, index: any) => (
                             <div className="flex gap-4 mb-2 border-b py-2 items-center">
                                 <div className="w-24">
                                     <Image width={"240"} height={"240"}
@@ -99,18 +116,19 @@ export default function Cart() {
                     <div className="bg-gray-200 p-4 rounded-lg">
                         <h2>checkout</h2>
                         <form >
-                            
-                            <AddressInputs adressProps={address}
-                        setAddressProp={handleAddressChange} 
-                         />
+
+                            <AddressInputs
+                                adressProps={{ phone, streetAddress, postalCode, city, country }}
+                                setAddressProp={handleAddressChange}
+                            />
 
 
                             <button className="bg-[#3F2E32] mt-2 text-white px-6 py-2 rounded font-bold w-full" type="submit">
-                               Pay ${total}
+                                Pay ${total}
                             </button>
                             {/* <SubmitButton >Pay ${total} </SubmitButton> */}
                         </form>
-                        
+
                     </div>
                 </div>
             </section>

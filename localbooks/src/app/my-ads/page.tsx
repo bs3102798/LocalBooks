@@ -15,7 +15,7 @@ export default async function MyAds() {
     }
 
     await connect();
-    const adsDocs = await AdModel.find({ userEmail:email })
+    const adsDocs = await AdModel.find({ userEmail: email })
     const ads = adsDocs.map(ad => JSON.parse(JSON.stringify(ad)));
     return (
         <>
@@ -23,11 +23,13 @@ export default async function MyAds() {
                 <h1 className="text-2xl font-bold mb-4">Your ads</h1>
                 <div className="grid grid-cols-4 gap-x-2 gap-y-4">
 
-                {ads?.map(ad => (
-                    <BookItem key={ad._id?.toString()} ad={ad} />
-                ))}
+                    {ads?.map(ad => (
+                        <BookItem key={ad._id?.toString()} ad={ad} />
+                    ))}
                 </div>
-              
+
+                <h1 className="text-2xl font-bold mb-4">Your orders</h1>
+
             </div>
         </>
 
