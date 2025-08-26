@@ -18,24 +18,7 @@ export default function Cart() {
     const [postalCode, setPostalCode] = useState('')
     const [streetAddress, setStreetAddress] = useState('')
 
-    
-    // const [adressProps, setAddressProp] = useState<Address>({
-
-    // })
-
-
-    // const [address, setAddress] = useState<Address>({
-    //     phone: '',
-    //     streetAddress: '',
-    //     postalCode: '',
-    //     city: '',
-    //     country: '',
-    // });
-
-
-    //   const handleAddressChange = (field: keyof Address, value: string) => {
-    //     setAddress(prev => ({ ...prev, [field]: value }));
-    //   };
+   
 
     function handleAddressChange(propName: string, value: SetStateAction<string>) {
         if (propName === 'phone') setPhone(value)
@@ -44,8 +27,10 @@ export default function Cart() {
         if (propName === 'streetAddress') setStreetAddress(value)
         if (propName === 'postalCode') setPostalCode(value)
 
+            console.log(handleAddressChange)
 
     }
+
 
 
     let total = 0;
