@@ -18,7 +18,7 @@ export default function Cart() {
     const [postalCode, setPostalCode] = useState('')
     const [streetAddress, setStreetAddress] = useState('')
 
-   
+
 
     function handleAddressChange(propName: string, value: SetStateAction<string>) {
         if (propName === 'phone') setPhone(value)
@@ -27,20 +27,24 @@ export default function Cart() {
         if (propName === 'streetAddress') setStreetAddress(value)
         if (propName === 'postalCode') setPostalCode(value)
 
-            console.log(handleAddressChange)
+        console.log(handleAddressChange)
 
     }
 
 
 
-    let total = 0;
+    let Subtotal = 0;
 
     for (const p of cartProducts) {
         // console.log(cartProductPrice(p))
-        total += cartProductPrice(p)
+        Subtotal += cartProductPrice(p)
     }
 
     //console.log(cartProducts)
+
+    function proceedToCheckout() {
+        
+    }
     return (
         <>
             <section className="mt-8">
@@ -89,18 +93,31 @@ export default function Cart() {
 
                             </div>
                         ))}
-                        <div className="py-4 text-right pr-12">
+                        
+                        <div className="py-4 justify-end pr-12 flex items-center">
+                            <div className="text-gray-500">
+                                SubTotal: <br />
+                                Delivery: <br />
+                                Total: 
+                            </div>
+                            <div className="text-lg font-semibold pl-2 text-right">
+                                ${Subtotal} <br /> 
+                                $5 <br />
+                                ${Subtotal + 5}
+                            </div>
+                        </div>
+                        {/* <div className="py-4 text-right pr-12">
                             <span className="text-gray-500">
-                                SubTotal:
+                                Delivery:
                             </span>
                             <span className="text-lg font-semibold pl-2">
-                                ${total}
+                                $5
                             </span>
-                        </div>
+                        </div> */}
                     </div>
                     <div className="bg-gray-200 p-4 rounded-lg">
                         <h2>checkout</h2>
-                        <form >
+                        <form onSubmit={proceedToCheckout} >
 
                             <AddressInputs
                                 adressProps={{ phone, streetAddress, postalCode, city, country }}
@@ -109,7 +126,7 @@ export default function Cart() {
 
 
                             <button className="bg-[#3F2E32] mt-2 text-white px-6 py-2 rounded font-bold w-full" type="submit">
-                                Pay ${total}
+                                Pay ${Subtotal + 5}
                             </button>
                             {/* <SubmitButton >Pay ${total} </SubmitButton> */}
                         </form>
