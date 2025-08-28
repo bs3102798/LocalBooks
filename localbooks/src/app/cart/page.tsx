@@ -42,8 +42,10 @@ export default function Cart() {
 
     //console.log(cartProducts)
 
-    function proceedToCheckout() {
-        
+    function proceedToCheckout(ev) {
+        //shoppiing cart products 
+        //go to stripe
+
     }
     return (
         <>
