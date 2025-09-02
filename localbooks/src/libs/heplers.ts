@@ -1,8 +1,14 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { faCar, faHome, faMobile, faTShirt } from "@fortawesome/free-solid-svg-icons";
 import mongoose from "mongoose";
+//const stripe = require("stripe")(por)
 
 export async function connect() {
     return mongoose.connect(process.env.MONGODB_URL as string)
+}
+
+export async function stripe(_p0: string) {
+    return stripe(process.env.STRIPE_SK as string)
 }
 
 export const categories = [
