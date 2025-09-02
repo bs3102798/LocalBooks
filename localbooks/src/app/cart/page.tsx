@@ -12,6 +12,8 @@ import { SetStateAction, useContext, useState } from "react"
 
 export default function Cart() {
     const { cartProducts, removeCartProduct } = useContext(CartContext);
+
+    const [address, setAddress] = useState('')
     const [city, setCity] = useState('')
     const [phone, setPhone] = useState('')
     const [country, setCountry] = useState('')
@@ -42,8 +44,18 @@ export default function Cart() {
 
     //console.log(cartProducts)
 
-    function proceedToCheckout(ev) {
-        //shoppiing cart products 
+    async function proceedToCheckout(ev) {
+        //shoppiing cart products   
+         await fetch('/api/checkout' , {
+            method: "POST", 
+            headers: {'Content-Type:' : "application/json"},
+            body: JSON.stringify({
+                address,
+                cartProducts,
+            })
+        });
+        const link = await response.json()
+        window.location = link
         //go to stripe
 
     }
