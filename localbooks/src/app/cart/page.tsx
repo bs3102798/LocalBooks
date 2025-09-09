@@ -59,6 +59,7 @@ export default function Cart() {
         //go to stripe
 
     }
+    console.log({cartProducts})
     return (
         <>
             <section className="mt-8">
